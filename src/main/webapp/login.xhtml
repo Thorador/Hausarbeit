@@ -6,12 +6,24 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <body>
 	<ui:composition template="base.xhtml">
-		<!-- hier wird gesagt welches template verwendet wird -->
 		<ui:define name="content">
-			<!-- das muss überschrieben werden um inhalt einzufügen -->
-			<div class="jumbotron">
-				<h1>Eventmanager 5000</h1>
+			<div class="jumbotron" style="margin:30px;">
+				<h1 align="center">Willkommen zurück, Stalker!</h1>
 				<hr />
+			</div>
+			<div style="margin-left:25%; width:50%;">
+				<div class="input-group">
+  					<span class="input-group-addon">Benutzername</span>
+  					<input type="text" class="form-control" placeholder="Benutzername" required="true"/>
+				</div>
+				<div class="input-group">
+  					<span class="input-group-addon">Passwort</span>
+ 					<input type="password" class="form-control" placeholder="Passwort" required="true"/>
+				</div>
+			</div>
+			<div class="btn-group" style="margin-left:25%; width:50%">
+				<BUTTON type="button" class="btn btn-default">Login</BUTTON>
+				<BUTTON type="button" class="btn btn-default">Abbrechen</BUTTON>
 			</div>
 		</ui:define>
 	</ui:composition>
