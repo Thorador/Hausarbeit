@@ -4,33 +4,38 @@ import java.util.Date;
 
 public class Reservierung {
 
-	private int id;  //Reservierungscode
-	private int user_id;
-	private int veranstaltung_id;
+	private int reservierungscode;
+	private int userID;
+	private int veranstaltungID;
 	private int anzTickets;
 	
-	public int getId() {
-		return id;
+	
+	public int getReservierungscode() {
+		return reservierungscode;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setReservierungscode(int reservierungscode) {
+		this.reservierungscode = reservierungscode;
 	}
-	public int getUserId() {
-		return user_id;
+	
+	public int getUserID() {
+		return userID;
 	}
-	public void setUserId(int user_id) {
-		this.user_id = user_id;
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
-	public int getVeranstaltungId() {
-		return id;
+	
+	public int getVeranstaltungID() {
+		return veranstaltungID;
 	}
-	public void setVeranstaltungId(int veranstaltung_id) {
-		this.veranstaltung_id = veranstaltung_id;
+	public void setVeranstaltungID(int veranstaltungID) {
+		this.veranstaltungID = veranstaltungID;
 	}
+	
 	public int getAnzTickets() {
 		return anzTickets;
 	}
 	public void setAnzTickets(int anzTickets) {
 		this.anzTickets = anzTickets;
 	}
+	
 }

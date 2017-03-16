@@ -11,6 +11,7 @@ public class Veranstaltung {
 	private int maxTickets;
 	private int bereitsReservierteTickets;
 	private String ort;
+	private double preis;
 
 	
 	public int getId() {
@@ -54,6 +55,12 @@ public class Veranstaltung {
 	}
 	public void setOrt(String ort) {
 		this.ort = ort;
+	}
+	public double getPreis() {
+		return preis;
+	}
+	public void setPreis(double preis) {
+		this.preis = preis;
 	}
 	
 }
