@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
+Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<body>
+	<ui:composition >
+		
+			<form>
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="benutzername" required="true"/>
+					<input type="password" class="form-control" placeholder="password" required="true"/>
+					<input type="text" class="form-control" placeholder="Vorname" required="false"/>
+					<input type="text" class="form-control" placeholder="Nachname" required="false"/>
+					<input type="date" class="form-control" placeholder="Geburtsdatum" required="false"/>
+					<FIELDSET>
+					<SPAN class="input-group-addon" name="Geschlecht">Geschlecht:
+						<DIV class="radio" name="Geschlecht" allign="center">
+							<label><input type="radio" name="Geschlecht" required="false" value="männlich" id="m"/>Männlich</label><BR />
+							<label><input type="radio" name="Geschlecht" required="false" value="weiblich" id="w"/>Weiblich</label><BR />
+							<label><input type="radio" name="Geschlecht" required="false" value="APACHE-Kampfhubschrauber" id="ak"/>APACHE-Kampfhubschrauber</label><BR />
+						</DIV>
+					</SPAN>
+					</FIELDSET>
+					<label><input type="checkbox" class="form-control" required="false"/>
+					</label>
+				</div>
+			</form>
+		
+	</ui:composition>
+</body>
+</html>
