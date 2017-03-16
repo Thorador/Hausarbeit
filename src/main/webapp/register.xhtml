@@ -6,27 +6,43 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <body>
 	<ui:composition >
-		
-			<form>
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="benutzername" required="true"/>
-					<input type="password" class="form-control" placeholder="password" required="true"/>
-					<input type="text" class="form-control" placeholder="Vorname" required="false"/>
-					<input type="text" class="form-control" placeholder="Nachname" required="false"/>
-					<input type="date" class="form-control" placeholder="Geburtsdatum" required="false"/>
-					<FIELDSET>
-					<SPAN class="input-group-addon" name="Geschlecht">Geschlecht:
-						<DIV class="radio" name="Geschlecht" allign="center">
-							<label><input type="radio" name="Geschlecht" required="false" value="männlich" id="m"/>Männlich</label><BR />
-							<label><input type="radio" name="Geschlecht" required="false" value="weiblich" id="w"/>Weiblich</label><BR />
-							<label><input type="radio" name="Geschlecht" required="false" value="APACHE-Kampfhubschrauber" id="ak"/>APACHE-Kampfhubschrauber</label><BR />
-						</DIV>
-					</SPAN>
-					</FIELDSET>
-					<label><input type="checkbox" class="form-control" required="false"/>
-					</label>
-				</div>
-			</form>
+		<form>
+			<div class="input-group">
+  				<span class="input-group-addon" >Benutzername</span>
+  				<input type="text" class="form-control" placeholder="Benutzername" required="true"/>
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon" >Passwort</span>
+ 				<input type="password" class="form-control" placeholder="Passwort" required="true"/>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon" >Vorname</span>
+ 				<input type="text" class="form-control" placeholder="Vorname" required="false"/>
+			</div>					
+			<div class="input-group">
+  				<span class="input-group-addon" >Nachname</span>
+  				<input type="text" class="form-control" placeholder="Nachname" required="false"/>
+			</div>					
+			<div class="input-group">
+  				<span class="input-group-addon" >Geburtsdatum</span>
+  				<input type="date" class="form-control" placeholder="Geburtsdatum" required="false"/>
+			</div>						
+			
+			<div class="input-group">
+				<span class="input-group-addon">Geschlecht:
+					<input type="radio" name="Geschlecht"/>
+				</span>
+			</div>
+			<div class="input-group">
+				<input type="radio" name="Geschlecht" required="false" value="männlich"/>
+  				<span class="input-group-addon" >Männlich</span>
+			</div>							
+			<label><input type="radio" name="Geschlecht" required="false" value="männlich" id="m"/>Männlich</label><BR />
+			<label><input type="radio" name="Geschlecht" required="false" value="weiblich" id="w"/>Weiblich</label><BR />
+			<label><input type="radio" name="Geschlecht" required="false" value="APACHE-Kampfhubschrauber" id="ak"/>APACHE-Kampfhubschrauber</label><BR />
+			<input type="checkbox" class="form-control" required="false"/>
+			<h:outputLabel>Manager</h:outputLabel>
+		</form>
 		
 	</ui:composition>
 </body>

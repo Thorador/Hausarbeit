@@ -10,9 +10,19 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
 	<h:outputScript name="bootstrap/js/bootstrap.min.js"></h:outputScript>
 </h:head>
-<nav class="navbar navbar-default">
+
+<!-- Menüleiste -->
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  	<div class="navbar-header">
+    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+     		<span class="icon-bar"></span>
+     		<span class="icon-bar"></span>
+     		<span class="icon-bar"></span>
+     	</button>
+     		<a class="navbar-brand" href="#">STALKTAGRAM</a>
+  	</div>
+
       <!-- Navigationsleiste links -->
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -22,10 +32,9 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       </form>
       <!-- Navigationsleiste rechts -->
       <ul class="nav navbar-nav navbar-right">
-        <li><h:link outcome="login" value="Login"/></li>
-        <li><h:link outcome="register" value="Register"/></li>
+        <li><h:link class="glyphicon glyphicon-user" outcome="login" value="Login"/></li>
+        <li><h:link class="glyphicon glyphicon-log-in" outcome="register" value="Register"/></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <body>
