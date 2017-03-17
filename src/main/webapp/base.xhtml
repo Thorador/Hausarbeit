@@ -3,12 +3,14 @@
 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<h:outputStylesheet name="bootstrap/css/bootstrap.min.css"></h:outputStylesheet>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
 	<h:outputScript name="bootstrap/js/bootstrap.min.js"></h:outputScript>
+	<meta charset="utf-8"/>
 </h:head>
 
 <!-- Menüleiste -->
@@ -32,8 +34,8 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       </form>
       <!-- Navigationsleiste rechts -->
       <ul class="nav navbar-nav navbar-right">
-        <li><h:link class="glyphicon glyphicon-user" outcome="login" value="Login"/></li>
-        <li><h:link class="glyphicon glyphicon-log-in" outcome="register" value="Register"/></li>
+        <li><h:link class="glyphicon glyphicon-user" outcome="login" value=" Login"/></li>
+        <li><h:link class="glyphicon glyphicon-log-in" outcome="index" value="Register"/></li>
       </ul>
   </div><!-- /.container-fluid -->
 </nav>

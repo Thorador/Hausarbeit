@@ -1,10 +1,18 @@
-package model;
+package view;
 
 import java.util.Date;
 
-public class User {
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
-	private int id;
+import model.User;
+import service.UserService;
+
+@ManagedBean
+@RequestScoped
+public class RegisterView {
+
 	private String benutzername;
 	private String passwort;
 	private String vorname;
@@ -16,16 +24,36 @@ public class User {
 	private String ort;
 	private int plz;
 	
-	public User(String benutzername,String passwort)
+	@ManagedProperty("#{userSerivce}")
+	private UserService userService = new UserService();
+	
+	public String register()
 	{
-		this.setBenutzername(benutzername);
-		this.setPasswort(passwort);
+		User user = new User(this.getBenutzername(), this.getPasswort());
+		user.setId(1);
+		user.setVorname("abc");
+		user.setNachname("def");
+		user.setGeburtsdatum(new Date(2011, 11, 11));
+		user.setRolle("manager");
+		user.setGeschlecht("männlich");
+		user.setStrasse("ghi");
+		user.setOrt("jkl");
+		user.setPlz(32456);
+		userService.addUser(user);
+		return userService.addUser(user) ? "frontpage.jsf" : "register.jsf";
 	}
-	public int getId() {
-		return id;
+	
+	public UserService getUserService() {
+		return userService;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public String cancel()
+	{
+		return "";
 	}
 	public String getVorname() {
 		return vorname;

@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 import model.User;
 import serviceInterface.IUserService;
 
 @ManagedBean
+@ApplicationScoped
 public class UserService implements IUserService {
 
 	List<User> users;
@@ -18,6 +20,7 @@ public class UserService implements IUserService {
 	public UserService()
 	{
 		users = new ArrayList<>();
+		users.add(new User("bob","abc"));
 	}
 	
 	@Override
@@ -28,21 +31,19 @@ public class UserService implements IUserService {
 			  			   Date   geburtsdatum,
 			  			   String rolle,
 			  			   String geschlecht,
-			  			   String straﬂe,
+			  			   String strasse,
 			  			   String ort,
 			  			   int	  plz) {
 		
-		User user = new User();
+		User user = new User(username, passwort);
 		user.setId(users.get(users.size() - 1).getId() + 1);
-			// ID wird hochgez‰hlt (+1 als die letzte ID der User-Liste)
-		user.setUsername(username);
-		user.setPassword(passwort);
+			// ID wird hochgezÔøΩhlt (+1 als die letzte ID der User-Liste)
 		user.setVorname(vorname);
 		user.setNachname(nachname);
 		user.setGeburtsdatum(geburtsdatum);
 		user.setRolle(rolle);
 		user.setGeschlecht(geschlecht);
-		user.setStraﬂe(straﬂe);
+		user.setStrasse(strasse);
 		user.setOrt(ort);
 		user.setPlz(plz);
 		
@@ -54,10 +55,7 @@ public class UserService implements IUserService {
 	@Override
 	public boolean addUser(User user) {
 		
-		if (getUserByName(user.getUsername()).isPresent())
-		{
-			
-		}
+
 		return false;
 		
 	}
@@ -69,7 +67,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public Optional<User> getUserByName(String username) {
-		return users.stream().filter(user -> user.getUsername().equals(username)).findFirst();
+		return users.stream().filter(user -> user.getBenutzername().equals(username)).findFirst();
 	}
 
 }
