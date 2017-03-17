@@ -17,8 +17,29 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon" >Datum</span>
- 				<
+ 				
 			</div>	
+			<div class="input-group">
+  				<span class="input-group-addon" >Zeit</span>
+  				
+  				<input type="text" class="form-control" placeholder="Beginn der Veranstaltung" required="true"/>
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon" >Ort</span>
+  				<input type="text" class="form-control" placeholder="Veranstaltungsort" required="true"/>
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon" >Anzahl der Tickets</span>
+  				<input type="text" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"/>
+			</div>
+			<div>
+				<span class="input-group-addon"><h:selectBooleanCheckbox>Veranstaltung veröffentlichen? </h:selectBooleanCheckbox></span>
+				
+			</div>
+			<div class="btn-group" style="margin-left:25%; width:50%">
+				<BUTTON type="button" class="btn btn-default">Änderung Speichern</BUTTON>
+				<BUTTON type="button" class="btn btn-default">Zurück</BUTTON>
+			</div>
 		</ui:define>
 	</ui:composition>
 </body>
