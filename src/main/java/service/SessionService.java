@@ -3,11 +3,11 @@ package service;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
 import model.User;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class SessionService implements Serializable{
 	

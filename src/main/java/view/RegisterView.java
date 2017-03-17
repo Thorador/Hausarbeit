@@ -49,6 +49,11 @@ public class RegisterView implements java.io.Serializable{
 		return userService.addUser(user) ? "frontpage.jsf" : "register.jsf";
 	}
 	
+	public String cancel()
+	{
+		return "frontpage.jsf";
+	}
+	
 	public UserService getUserService() {
 		return userService;
 	}
@@ -56,11 +61,7 @@ public class RegisterView implements java.io.Serializable{
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-
-	public String cancel()
-	{
-		return "";
-	}
+	
 	public String getVorname() {
 		return vorname;
 	}

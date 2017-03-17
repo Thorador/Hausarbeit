@@ -56,10 +56,8 @@ public class UserService implements IUserService {
 	@Override
 	public boolean addUser(User user) {
 		
-		System.out.println("--> addUser");
 		if (getUserByName(user.getBenutzername()).isPresent() ==false)
 		{
-			System.out.println("--> if-abfrage");
 			return users.add(user);
 		}
 		return false;
