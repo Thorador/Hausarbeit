@@ -6,43 +6,47 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <body>
-		<h:form id="register-form">
-			<div class="input-group col-md-10">
-  				<span class="input-group-addon" >Benutzername</span>
-  				<h:inputText value="#{registerView.benutzername}" type="text" class="form-control" placeholder="Benutzername" required="true"/>
-			</div>
-			<div class="input-group col-md-10">
-  				<span class="input-group-addon" >Passwort</span>
- 				<h:inputSecret value="#{registerView.passwort}" type="password" class="form-control" placeholder="Passwort" required="true"/>
-			</div>
-			<div class="input-group col-md-10">
-				<span class="input-group-addon" >Vorname</span>
- 				<h:inputText value="#{registerView.vorname}" type="text" class="form-control" placeholder="Vorname" />
-			</div>					
-			<div class="input-group col-md-10">
-  				<span class="input-group-addon" >Nachname</span>
-  				<h:inputText value="#{registerView.nachname}" type="text" class="form-control" placeholder="Nachname" />
-			</div>					
-			<div class="input-group col-md-10">
-  				<span class="input-group-addon" >Geburtsdatum</span>
-  				<h:inputText id="geburtsdatumEingabe" value="#{registerView.geburtsdatum}" class="form-control" placeholder="DD.MM.YYYY"><f:convertDateTime pattern="dd.mm.yyyy"></f:convertDateTime></h:inputText>			
-			</div>
-			<h:message for = "geburtsdatumEingabe" style = "color:red"  />						
-			<div> 
-				<h:selectOneRadio value="#{registerView.geschlecht}" required="true">
-				Geschlecht:
-					<f:selectItem itemValue="männlich" itemLabel="Männlich"></f:selectItem>
-					<f:selectItem itemValue="weiblich" itemLabel="Weiblich"></f:selectItem>
-					<f:selectItem itemValue="apache-kampfhubschrauber" itemLabel="Apache-Kampfhubschrauber"></f:selectItem>
-				</h:selectOneRadio>	
-			</div>
-			<div class="input-group">
-				<span >
-					<h:selectBooleanCheckbox value="manager" label="Manager"> </h:selectBooleanCheckbox> Manager
-				</span>
-			</div>		
-			<h:commandButton action="#{registerView.register}" class="btn btn-default" value="Registrieren"></h:commandButton>
-			<h:commandButton action="#{registerView.cancel}" immediate="true" class="btn btn-default" value="Abbrechen"></h:commandButton>					
-		</h:form>		
+	<ui:composition template="base.xhtml">
+		<ui:define name="content">
+			<h:form id="register-form">
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" >Benutzername</span>
+  					<h:inputText value="#{registerView.benutzername}" type="text" class="form-control" placeholder="Benutzername" required="true"/>
+				</div>
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" >Passwort</span>
+ 					<h:inputSecret value="#{registerView.passwort}" type="password" class="form-control" placeholder="Passwort" required="true"/>
+				</div>
+				<div class="input-group col-md-10">
+					<span class="input-group-addon" >Vorname</span>
+ 					<h:inputText value="#{registerView.vorname}" type="text" class="form-control" placeholder="Vorname" />
+				</div>					
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" >Nachname</span>
+  					<h:inputText value="#{registerView.nachname}" type="text" class="form-control" placeholder="Nachname" />
+				</div>					
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" >Geburtsdatum</span>
+  					<h:inputText id="geburtsdatumEingabe" value="#{registerView.geburtsdatum}" class="form-control" placeholder="DD.MM.YYYY"><f:convertDateTime pattern="dd.mm.yyyy"></f:convertDateTime></h:inputText>			
+				</div>
+				<h:message for = "geburtsdatumEingabe" style = "color:red"  />						
+				<div> 
+					<h:selectOneRadio value="#{registerView.geschlecht}" required="true">
+					Geschlecht:
+						<f:selectItem itemValue="männlich" itemLabel="Männlich"></f:selectItem>
+						<f:selectItem itemValue="weiblich" itemLabel="Weiblich"></f:selectItem>
+						<f:selectItem itemValue="apache-kampfhubschrauber" itemLabel="Apache-Kampfhubschrauber"></f:selectItem>
+					</h:selectOneRadio>	
+				</div>
+				<div class="input-group">
+					<span >
+						<h:selectBooleanCheckbox value="manager" label="Manager"> </h:selectBooleanCheckbox> Manager
+					</span>
+				</div>		
+				<h:commandButton action="#{registerView.register}" class="btn btn-default" value="Registrieren"></h:commandButton>
+				<h:commandButton action="#{registerView.cancel}" immediate="true" class="btn btn-default" value="Abbrechen"></h:commandButton>					
+			</h:form>
+		</ui:define>	
+	</ui:composition>		
 </body>
 </html>

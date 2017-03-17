@@ -5,13 +5,15 @@ import java.util.Date;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import model.User;
 import service.UserService;
 
-@ManagedBean
+@Named
 @RequestScoped
-public class RegisterView {
+public class RegisterView implements java.io.Serializable{
 
 	private String benutzername;
 	private String passwort;
@@ -24,8 +26,13 @@ public class RegisterView {
 	private String ort;
 	private int plz;
 	
-	@ManagedProperty("#{userSerivce}")
-	private UserService userService = new UserService();
+	@Inject
+	private UserService userService;
+	
+	public RegisterView()
+	{
+		
+	}
 	
 	public String register()
 	{
@@ -39,7 +46,6 @@ public class RegisterView {
 		user.setStrasse("ghi");
 		user.setOrt("jkl");
 		user.setPlz(32456);
-		userService.addUser(user);
 		return userService.addUser(user) ? "frontpage.jsf" : "register.jsf";
 	}
 	

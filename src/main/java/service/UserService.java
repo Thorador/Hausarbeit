@@ -7,16 +7,17 @@ import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
 import model.User;
 import serviceInterface.IUserService;
 
-@ManagedBean
+@Named
 @ApplicationScoped
 public class UserService implements IUserService {
 
 	List<User> users;
-	
+
 	public UserService()
 	{
 		users = new ArrayList<>();
@@ -55,7 +56,12 @@ public class UserService implements IUserService {
 	@Override
 	public boolean addUser(User user) {
 		
-
+		System.out.println("--> addUser");
+		if (getUserByName(user.getBenutzername()).isPresent() ==false)
+		{
+			System.out.println("--> if-abfrage");
+			return users.add(user);
+		}
 		return false;
 		
 	}
