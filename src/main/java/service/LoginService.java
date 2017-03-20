@@ -21,7 +21,6 @@ public class LoginService {
 
 	public boolean login(String benutzername, String passwort) {
 		Optional<User> user = userService.getUserByName(benutzername);
-		System.out.println("--> " + user.get().getBenutzername());
 		if(user.isPresent())
 		{
 			if(passwort.equals(user.get().getPasswort()))

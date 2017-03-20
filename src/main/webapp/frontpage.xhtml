@@ -10,9 +10,20 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<!-- hier wird gesagt welches template verwendet wird -->
 		<ui:define name="content">
 			<!-- das muss überschrieben werden um inhalt einzufügen -->
-			<div class="jumbotron">
-				<H1>asd</H1>
-			</div>
+			<h:dataTable value="#{veranstaltungService.getVeranstaltungen()}" var="v" class="table table-striped">
+  				<h:column>
+  					<f:facet name="header">Veranstaltungsname</f:facet>
+  					#{v.veranstaltungsname}
+  				</h:column>
+  				<h:column>
+  					<f:facet name="header">Beschreibung</f:facet>
+  					#{v.beschreibung}
+  				</h:column>
+  				<h:column>
+  					<f:facet name="header">Datum</f:facet>
+  					#{v.datum}
+  				</h:column>  				
+			</h:dataTable>
 		</ui:define>
 	</ui:composition>
 </body>

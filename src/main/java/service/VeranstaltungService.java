@@ -5,12 +5,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
 import model.Veranstaltung;
 import serviceInterface.IVeranstaltungService;
 
-@ManagedBean
+@Named
+@ApplicationScoped
 public class VeranstaltungService implements IVeranstaltungService {
 
 	List<Veranstaltung> veranstaltungen;
@@ -18,6 +21,21 @@ public class VeranstaltungService implements IVeranstaltungService {
 	public VeranstaltungService()
 	{
 		veranstaltungen = new ArrayList<>();
+		Veranstaltung veranstaltung = new Veranstaltung();
+		veranstaltung.setVeranstaltungsname("J-Law stalken");
+		veranstaltung.setBeschreibung("kommt zum stalken");
+		veranstaltung.setDatum(new Date(2011, 11, 11));
+		veranstaltungen.add(veranstaltung);
+		Veranstaltung veranstaltung2 = new Veranstaltung();
+		veranstaltung2.setBeschreibung("kommt zum stalken");
+		veranstaltung2.setDatum(new Date(2011, 11, 11));
+		veranstaltung2.setVeranstaltungsname("Emma Watson stalken");
+		veranstaltungen.add(veranstaltung2);
+		Veranstaltung veranstaltung3 = new Veranstaltung();
+		veranstaltung3.setBeschreibung("kommt zum stalken");
+		veranstaltung3.setDatum(new Date(2011, 11, 11));
+		veranstaltung3.setVeranstaltungsname("Ryan Gosling stalken");
+		veranstaltungen.add(veranstaltung3);
 	}
 	
 	@Override
@@ -45,13 +63,9 @@ public class VeranstaltungService implements IVeranstaltungService {
 	}
 	
 	@Override
-	public boolean addVeranstaltung(Veranstaltung veranstaltung) {
+	public void addVeranstaltung(Veranstaltung veranstaltung) {
 		
-		if (getVeranstaltungByName(veranstaltung.getVeranstaltungsname()).isPresent())
-		{
-			
-		}
-		return false;
+		veranstaltungen.add(veranstaltung);
 		
 	}
 

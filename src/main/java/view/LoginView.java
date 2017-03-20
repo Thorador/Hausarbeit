@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import service.LoginService;
+import service.SessionService;
 
 @Named
 @RequestScoped
@@ -16,12 +17,12 @@ public class LoginView implements Serializable {
 	private String passwort;
 	
 	@Inject
-	private LoginService loginService;
+	private SessionService sessionService;
 	
 	public String login()
 	{
 		System.out.println(getBenutzername() + " " + getPasswort());
-		return loginService.login(getBenutzername(), getPasswort()) ? "frontpage.jsf" : "login.jsf";			
+		return sessionService.login(getBenutzername(), getPasswort()) ? "frontpage.jsf" : "login.jsf";			
 	}
 	public String cancel()
 	{

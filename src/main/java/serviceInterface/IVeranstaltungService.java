@@ -14,7 +14,7 @@ public interface IVeranstaltungService {
 											 int maxTickets,
 											 String ort,
 											 double preis);
-	public boolean addVeranstaltung(Veranstaltung veranstaltung);
+	public void addVeranstaltung(Veranstaltung veranstaltung);
 	public List<Veranstaltung> getVeranstaltungen();
 	public Optional<Veranstaltung> getVeranstaltungByName(String veranstaltungsname);
 

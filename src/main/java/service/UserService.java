@@ -21,6 +21,9 @@ public class UserService implements IUserService {
 	public UserService()
 	{
 		users = new ArrayList<>();
+		User user = new User("admin", "admin");
+		user.setRolle("manager");
+		users.add(user);
 		users.add(new User("bob","abc"));
 	}
 	

@@ -26,16 +26,23 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   	</div>
 
       <!-- Navigationsleiste links -->
-      <form class="navbar-form navbar-left">
+      <h:form class="navbar-form navbar-left">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Veranstaltung"/>
+          <h:inputText type="text" class="form-control" placeholder="Veranstaltung"/>
         </div>
-        <button type="submit" class="btn btn-default">Suchen</button>
-      </form>
+        <h:button type="submit" class="btn btn-default">Suchen</h:button>
+      </h:form>
+      <h:form>
+      	<h:link outcome="veranstaltung" value="Veranstaltung anlegen" rendered="#{sessionService.isManager()}"></h:link>
+      </h:form>
       <!-- Navigationsleiste rechts -->
       <ul class="nav navbar-nav navbar-right">
-        <li><h:link class="glyphicon glyphicon-user" outcome="login" value=" Login"/></li>
-        <li><h:link class="glyphicon glyphicon-log-in" outcome="register" value="Register"/></li>
+        <li><h:link class="glyphicon glyphicon-user" outcome="login" value=" Login" rendered="#{sessionService.isNotLoggedIn()}"/></li>
+        <li><h:link class="glyphicon glyphicon-log-in" outcome="register" value="Register" rendered="#{sessionService.isNotLoggedIn()}"/></li>
+        <li><h:link outcome="frontpage" value="Home" rendered="#{sessionService.isLoggedIn()}"></h:link></li>
+        <h:form>
+        <li><h:commandLink action="#{baseView.logout}" value="Logout" rendered="#{sessionService.isLoggedIn()}"></h:commandLink></li>
+      	</h:form>
       </ul>
   </div><!-- /.container-fluid -->
 </nav>

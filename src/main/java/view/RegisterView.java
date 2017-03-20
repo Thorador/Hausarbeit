@@ -41,7 +41,7 @@ public class RegisterView implements java.io.Serializable{
 		user.setVorname("abc");
 		user.setNachname("def");
 		user.setGeburtsdatum(new Date(2011, 11, 11));
-		user.setRolle("manager");
+		user.setRolle(getRolle());
 		user.setGeschlecht("männlich");
 		user.setStrasse("ghi");
 		user.setOrt("jkl");
@@ -52,14 +52,6 @@ public class RegisterView implements java.io.Serializable{
 	public String cancel()
 	{
 		return "frontpage.jsf";
-	}
-	
-	public UserService getUserService() {
-		return userService;
-	}
-
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 	
 	public String getVorname() {

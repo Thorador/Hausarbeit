@@ -12,8 +12,27 @@ public class Veranstaltung {
 	private int bereitsReservierteTickets;
 	private String ort;
 	private double preis;
+	private boolean veroeffentlicht;
 
 	
+	public boolean isVeroeffentlicht() {
+		return veroeffentlicht;
+	}
+	public void setVeroeffentlicht(boolean veroeffentlicht) {
+		this.veroeffentlicht = veroeffentlicht;
+	}
+	public Veranstaltung(String veranstaltungsname, String beschreibung, Date datum, String ort, int anzahlTickets,
+			boolean veroeffentlicht) {
+		this.veranstaltungsname=veranstaltungsname;
+		this.beschreibung=beschreibung;
+		this.datum=datum;
+		this.ort=ort;
+		this.maxTickets=anzahlTickets;
+		this.veroeffentlicht=veroeffentlicht;
+	}
+	public Veranstaltung() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getId() {
 		return id;
 	}

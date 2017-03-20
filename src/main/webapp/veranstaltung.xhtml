@@ -2,23 +2,26 @@
 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <body>
 	<ui:composition template="base.xhtml">
 		<ui:define name="content">
+			<h:form>
 			<div class="input-group">
   				<span class="input-group-addon" >Veranstaltungsname</span>
-  				<input type="text" class="form-control" placeholder="Name der Veranstaltung" required="true"/>
+  				<h:inputText value="#{frontpageView.veranstaltungsname}" type="text" class="form-control" placeholder="Name der Veranstaltung" required="true"/>
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" >Beschreibung</span>
-  				<input type="text" class="form-control" placeholder="Beschreibung der Veranstaltung" required="true"/>
+  				<h:inputText value="#{frontpageView.beschreibung}" type="text" class="form-control" placeholder="Beschreibung der Veranstaltung" required="true"/>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon" >Datum</span>
- 				
-			</div>	
+ 			  	<h:inputText id="veranstaltungsdatum" value="#{frontpageView.datum}" class="form-control" placeholder="DD.MM.YYYY"><f:convertDateTime pattern="dd.mm.yyyy"></f:convertDateTime></h:inputText>			
+			</div>
+				<h:message for = "veranstaltungsdatum" style = "color:red"  />	
 			<div class="input-group">
   				<span class="input-group-addon" >Zeit</span>
   				
@@ -26,20 +29,21 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" >Ort</span>
-  				<input type="text" class="form-control" placeholder="Veranstaltungsort" required="true"/>
+  				<h:inputText value="#{frontpageView.ort}" type="text" class="form-control" placeholder="Veranstaltungsort" required="true"/>
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" >Anzahl der Tickets</span>
-  				<input type="text" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"/>
+  				<h:inputText value="#{frontpageView.anzahlTickets}" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"/>
 			</div>
 			<div>
-				<span class="input-group-addon"><h:selectBooleanCheckbox>Veranstaltung veröffentlichen? </h:selectBooleanCheckbox></span>
+				<span class="input-group-addon"><h:selectBooleanCheckbox value="#{frontpageView.veroeffentlicht}">Veranstaltung veröffentlichen? </h:selectBooleanCheckbox></span>
 				
 			</div>
 			<div class="btn-group" style="margin-left:25%; width:50%">
-				<BUTTON type="button" class="btn btn-default">Änderung Speichern</BUTTON>
-				<BUTTON type="button" class="btn btn-default">Zurück</BUTTON>
+				<h:commandButton action="#{frontpageView.create}" value="create" class="btn btn-default">Änderung Speichern</h:commandButton>
+				<h:commandButton action="#{frontpageView.cancel}" immediate="true" value="cancel" class="btn btn-default">Zurück</h:commandButton>
 			</div>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </body>
