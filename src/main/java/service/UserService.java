@@ -21,10 +21,11 @@ public class UserService implements IUserService {
 	public UserService()
 	{
 		users = new ArrayList<>();
+		
 		User user = new User("admin", "admin");
 		user.setRolle("manager");
 		users.add(user);
-		users.add(new User("bob","abc"));
+		users.add(createUser("bob","abc", "Bob", "Baumeister", new Date(), "user", "w", "Landstraﬂe 34", "Heimatort", 45678));
 	}
 	
 	@Override

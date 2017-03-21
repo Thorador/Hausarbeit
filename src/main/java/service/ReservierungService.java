@@ -12,12 +12,23 @@ import serviceInterface.IReservierungService;
 @ManagedBean
 public class ReservierungService implements IReservierungService {
 
-	List<Reservierung> reservierungen;
+	List<Reservierung> reservierungen = new ArrayList<>();
 	
 	public ReservierungService()
-	{
-		reservierungen = new ArrayList<>();
+	{		
+		reservierungen.add(createReservierung(9, 5, 45));
+		reservierungen.add(createReservierung(5, 5, 45));
+		reservierungen.add(createReservierung(2, 5, 45));
+		reservierungen.add(createReservierung(7, 5, 45));
+		reservierungen.add(createReservierung(9, 4, 45));
+		reservierungen.add(createReservierung(5, 4, 45));
+		reservierungen.add(createReservierung(2, 4, 45));
+		reservierungen.add(createReservierung(7, 23, 12));
 	}
+	
+	
+	
+	//reservierungen.add();
 
 	@Override
 	public Reservierung createReservierung(int userID,
@@ -28,7 +39,7 @@ public class ReservierungService implements IReservierungService {
 		
 		do {
 			reservierungscode = ((int)(Math.random() * 10000000));
-		} while (reservierungscodeExist(reservierungscode));
+		} while (reservierungscodeExist(reservierungscode) || reservierungscode < 1000000);
 		
 		reservierung.setReservierungscode(reservierungscode);
 		reservierung.setUserID(userID);
