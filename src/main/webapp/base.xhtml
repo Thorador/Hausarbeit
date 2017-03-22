@@ -24,30 +24,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		</button>
 		<a class="navbar-brand" href="#">STALKTAGRAM</a>
 	</div>
-
-	<!-- Navigationsleiste links -->
-	<h:form>
-
-		<h:link outcome="veranstaltung" value="Veranstaltung anlegen"
-			rendered="#{sessionService.isManager()}"></h:link>
-	</h:form>
-
-
-
-	<!-- Navigationsleiste rechts -->
-	<ul class="nav navbar-nav navbar-right">
-		<li><h:link class="glyphicon glyphicon-user" outcome="login"
-				value=" Login" rendered="#{sessionService.isNotLoggedIn()}" /></li>
-		<li><h:link class="glyphicon glyphicon-log-in" outcome="register"
-				value="Register" rendered="#{sessionService.isNotLoggedIn()}" /></li>
-		<li><h:link outcome="frontpage" value="Home"
-				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
-		<h:form>
-			<li><h:commandLink action="#{baseView.logout}" value="Logout"
-					rendered="#{sessionService.isLoggedIn()}"></h:commandLink></li>
-		</h:form>
-	</ul>
-
+	
 	<div class="navbar-form navbar-left">
 		<div class="form-group">
 			<h:inputText type="text" class="form-control"
