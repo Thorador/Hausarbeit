@@ -63,7 +63,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<li><h:link outcome="meinProfil" value="MeinProfil"
 				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
 	</ul>
-
+	
 	<!-- Navigationsleiste rechts -->
 	<ul class="nav navbar-nav navbar-right">
 		<li><h:link class="glyphicon glyphicon-user" outcome="login"
@@ -75,7 +75,6 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<li><h:commandLink action="#{baseView.logout}" value="Logout"
 				rendered="#{sessionService.isLoggedIn()}"></h:commandLink></li>
 	</ul>
-	</h:form>
 </div>
 <!-- /.container-fluid --> </nav>
 <body>
