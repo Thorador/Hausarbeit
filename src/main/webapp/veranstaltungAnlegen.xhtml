@@ -11,15 +11,15 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			<h:form>
 			<div class="input-group">
   				<span class="input-group-addon" >Veranstaltungsname</span>
-  				<h:inputText value="#{frontpageView.veranstaltungsname}" type="text" class="form-control" placeholder="Name der Veranstaltung" required="true"/>
+  				<h:inputText value="#{veranstaltungAnlegenView.veranstaltungsname}" type="text" class="form-control" placeholder="Name der Veranstaltung" required="true"/>
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" >Beschreibung</span>
-  				<h:inputText value="#{frontpageView.beschreibung}" type="text" class="form-control" placeholder="Beschreibung der Veranstaltung" required="true"/>
+  				<h:inputText value="#{veranstaltungAnlegenView.beschreibung}" type="text" class="form-control" placeholder="Beschreibung der Veranstaltung" required="true"/>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon" >Datum</span>
- 			  	<h:inputText id="veranstaltungsdatum" value="#{frontpageView.datum}" class="form-control" placeholder="DD.MM.YYYY"><f:convertDateTime pattern="dd.mm.yyyy"></f:convertDateTime></h:inputText>			
+ 			  	<h:inputText id="veranstaltungsdatum" value="#{veranstaltungAnlegenView.datum}" class="form-control" placeholder="DD.MM.YYYY"><f:convertDateTime pattern="dd.mm.yyyy"></f:convertDateTime></h:inputText>			
 			</div>
 				<h:message for = "veranstaltungsdatum" style = "color:red"  />	
 			<div class="input-group">
@@ -29,19 +29,19 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" >Ort</span>
-  				<h:inputText value="#{frontpageView.ort}" type="text" class="form-control" placeholder="Veranstaltungsort" required="true"/>
+  				<h:inputText value="#{veranstaltungAnlegenView.ort}" type="text" class="form-control" placeholder="Veranstaltungsort" required="true"/>
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" >Anzahl der Tickets</span>
-  				<h:inputText value="#{frontpageView.anzahlTickets}" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"/>
+  				<h:inputText value="#{veranstaltungAnlegenView.anzahlTickets}" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"/>
 			</div>
 			<div>
-				<span class="input-group-addon"><h:selectBooleanCheckbox value="#{frontpageView.veroeffentlicht}">Veranstaltung veröffentlichen? </h:selectBooleanCheckbox></span>
+				<span class="input-group-addon"><h:selectBooleanCheckbox value="#{veranstaltungAnlegenView.veroeffentlicht}">Veranstaltung veröffentlichen? </h:selectBooleanCheckbox></span>
 				
 			</div>
 			<div class="btn-group" style="margin-left:25%; width:50%">
-				<h:commandButton action="#{frontpageView.create}" value="create" class="btn btn-default">Änderung Speichern</h:commandButton>
-				<h:commandButton action="#{frontpageView.cancel}" immediate="true" value="cancel" class="btn btn-default">Zurück</h:commandButton>
+				<h:commandButton action="#{veranstaltungAnlegenView.create}" value="Anlegen" class="btn btn-default"></h:commandButton>
+				<h:commandButton action="#{veranstaltungAnlegenView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default"></h:commandButton>
 			</div>
 			</h:form>
 		</ui:define>

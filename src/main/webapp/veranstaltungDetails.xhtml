@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
+Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<body>
+	<ui:composition template="base.xhtml">
+		<ui:define name="content">
+			<f:metadata>
+				<f:viewParam name="veranstaltungsname" value="#{veranstaltungDetailsView.veranstaltungsname}"></f:viewParam>
+				<f:event listener="#{veranstaltungDetailsView.init}" type="preRenderView"></f:event>
+			</f:metadata>
+			<h:form id="details-form">
+			<div>
+  				<span>Veranstaltungsname</span>
+  				<h:outputText value="#{veranstaltungDetailsView.veranstaltungsname}" class="form-control" />
+			</div>
+			<div>
+  				<span >Beschreibung</span>
+  				<h:outputText value="#{veranstaltungDetailsView.beschreibung}" class="form-control" />
+			</div>
+			<div>
+				<span>Datum</span>
+ 			  	<h:outputText id="veranstaltungsdatum" value="#{veranstaltungDetailsView.datum}" class="form-control"></h:outputText>			
+			</div>
+			<div>
+  				<span>Zeit</span>
+  				
+  				<outputText type="text" class="form-control" placeholder="Beginn der Veranstaltung"/>
+			</div>
+			<div>
+  				<span>Ort</span>
+  				<h:outputText value="#{veranstaltungDetailsView.ort}" type="text" class="form-control"/>
+			</div>
+			<div>
+  				<span>Anzahl der Tickets</span>
+  				<h:outputText value="#{veranstaltungDetailsView.maxTickets}" class="form-control"/>
+			</div>
+			<div class="btn-group" style="margin-left:25%; width:50%">
+				<h:commandButton action="#{veranstaltungAnlegenView.create}" value="Reservieren" class="btn btn-default"></h:commandButton>
+				<h:commandButton action="#{veranstaltungAnlegenView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default"></h:commandButton>
+			</div>	
+			</h:form>
+		</ui:define>	
+	</ui:composition>		
+</body>
+</html>

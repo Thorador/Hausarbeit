@@ -16,7 +16,7 @@ public class BaseView {
 	public String logout()
 	{
 		sessionService.logout();
-		return "frontpage";
+		return "home";
 	}
 	
 	public String veranstaltungErstellen()
