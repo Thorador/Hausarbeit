@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
+Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<body>
+	<ui:composition template="base.xhtml">
+		<ui:define name="content">
+			<h:form id="register-form">
+				<h1>Mein Profil</h1>
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" style="width:160px">Benutzername</span>
+  					<h:inputText value="#{meinProfilView.benutzername}" type="text" class="form-control" disabled="true"/>
+				</div>
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" style="width:160px">neues Passwort</span>
+ 					<h:inputSecret value="#{meinProfilView.passwort}" type="password" class="form-control" required="true"/>
+				</div>
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" style="width:160px">Passwort bestätigen</span>
+ 					<h:inputSecret value="#{meinProfilView.passwortbestaetigen}" type="password" class="form-control" required="true"/>
+				</div>
+				<div class="input-group col-md-10">
+					<span class="input-group-addon" style="width:160px">Vorname</span>
+ 					<h:inputText value="#{meinProfilView.vorname}" type="text" class="form-control" placeholder="Vorname" />
+				</div>					
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" style="width:160px">Nachname</span>
+  					<h:inputText value="#{meinProfilView.nachname}" type="text" class="form-control" placeholder="Nachname" />
+				</div>					
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" style="width:160px">Geburtsdatum</span>
+  					<h:inputText id="geburtsdatumEingabe" value="#{meinProfilView.geburtsdatum}" class="form-control" placeholder="DD.MM.YYYY"><f:convertDateTime pattern="dd.mm.yyyy"></f:convertDateTime></h:inputText>			
+				</div>
+				<h:message for = "geburtsdatumEingabe" style = "color:red"  />						
+				<div class="input-group col-md-10">
+					<span class="input-group-addon" style="width:160px">Straße</span>
+ 					<h:inputText value="#{meinProfilView.strasse}" type="text" class="form-control" placeholder="Straße und Hausnummer" />
+				</div>					
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" style="width:160px">Ort</span>
+  					<h:inputText value="#{meinProfilView.ort}" type="text" class="form-control" placeholder="Ort" />
+				</div>
+				<div class="input-group col-md-10">
+  					<span class="input-group-addon" style="width:160px">Postleitzahl</span>
+  					<h:inputText value="#{meinProfilView.plz}" type="text" class="form-control" placeholder="Postleitzahl"/>
+				</div>		
+				<div> 
+					<h:selectOneRadio value="#{meinProfilView.geschlecht}" required="true">
+					Geschlecht:
+						<f:selectItem itemValue="männlich" itemLabel="Männlich"></f:selectItem>
+						<f:selectItem itemValue="weiblich" itemLabel="Weiblich"></f:selectItem>
+						<f:selectItem itemValue="apache-kampfhubschrauber" itemLabel="Apache-Kampfhubschrauber"></f:selectItem>
+					</h:selectOneRadio>	
+				</div>
+					
+				<h:commandButton action="#{meinProfilView.save}" immediate="true" class="btn btn-default" value="Speichern"></h:commandButton>
+				<h:commandButton action="#{meinProfilView.cancel}" immediate="true" class="btn btn-default" value="Abbrechen"></h:commandButton>
+				<h:commandButton action="#{meinProfilView.importBenutzer}" immediate="true" class="btn btn-default" value="Import"></h:commandButton>						
+			</h:form>
+		</ui:define>	
+	</ui:composition>		
+</body>
+</html>
