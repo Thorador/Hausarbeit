@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.Veranstaltung;
@@ -17,6 +18,9 @@ import serviceInterface.IVeranstaltungService;
 public class VeranstaltungService implements IVeranstaltungService {
 
 	List<Veranstaltung> veranstaltungen;
+	
+	@Inject
+	SessionService sessionService;
 	
 	public VeranstaltungService()
 	{
@@ -46,19 +50,22 @@ public class VeranstaltungService implements IVeranstaltungService {
 											 String ort,
 											 double preis) {
 		
-		Veranstaltung veranstaltung = new Veranstaltung();
-		
-		veranstaltung.setId(veranstaltungen.get(veranstaltungen.size() - 1).getId() + 1);
-			// Veranstaltungs-ID ist +1 als die letzte ID der Veranstaltungsliste
-		veranstaltung.setVeranstaltungsname(veranstaltungsname);
-		veranstaltung.setBeschreibung(beschreibung);
-		veranstaltung.setDatum(datum);
-		veranstaltung.setMaxTickets(maxTickets);
-		veranstaltung.setBereitsReservierteTickets(0);
-		veranstaltung.setOrt(ort);
-		veranstaltung.setPreis(preis);
-		
-		return veranstaltung;
+		if (sessionService != null && sessionService.isLoggedIn() && sessionService.isManager())
+		{
+			Veranstaltung veranstaltung = new Veranstaltung();
+			veranstaltung.setId(veranstaltungen.get(veranstaltungen.size() - 1).getId() + 1);
+				// Veranstaltungs-ID ist +1 als die letzte ID der Veranstaltungsliste
+			veranstaltung.setVeranstaltungsname(veranstaltungsname);
+			veranstaltung.setBeschreibung(beschreibung);
+			veranstaltung.setDatum(datum);
+			veranstaltung.setMaxTickets(maxTickets);
+			veranstaltung.setBereitsReservierteTickets(0);
+			veranstaltung.setOrt(ort);
+			veranstaltung.setPreis(preis);
+			
+			return veranstaltung;
+		}
+		return null;
 		
 	}
 	

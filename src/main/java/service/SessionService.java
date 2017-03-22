@@ -67,6 +67,10 @@ public class SessionService implements Serializable{
 		}
 		return false;
 	}
+	
+	public void logout(){
+		setActiveUser(null);
+	}
 
 
 }

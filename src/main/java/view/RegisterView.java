@@ -17,6 +17,7 @@ public class RegisterView implements java.io.Serializable{
 
 	private String benutzername;
 	private String passwort;
+	private String passwortbestaetigen;
 	private String vorname;
 	private String nachname;
 	private Date geburtsdatum;
@@ -35,18 +36,17 @@ public class RegisterView implements java.io.Serializable{
 	}
 	
 	public String register()
-	{
-		User user = new User(this.getBenutzername(), this.getPasswort());
-		user.setId(1);
-		user.setVorname("abc");
-		user.setNachname("def");
-		user.setGeburtsdatum(new Date(2011, 11, 11));
-		user.setRolle(getRolle());
-		user.setGeschlecht("männlich");
-		user.setStrasse("ghi");
-		user.setOrt("jkl");
-		user.setPlz(32456);
-		return userService.addUser(user) ? "frontpage.jsf" : "register.jsf";
+	{	
+		if (getPasswort().equals(getPasswortbestaetigen()))
+		{
+			User user = userService.createUser(getBenutzername(), getPasswort(), 
+										   getVorname(), getNachname(), getGeburtsdatum(), 
+										   getRolle(), getGeschlecht(), getStrasse(), 
+										   getOrt(), getPlz()); 
+		
+			return userService.addUser(user) ? "frontpage.jsf" : "register.jsf";
+		}
+		return "register.jsf";
 	}
 	
 	public String cancel()
@@ -113,5 +113,11 @@ public class RegisterView implements java.io.Serializable{
 	}
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
+	}
+	public String getPasswortbestaetigen() {
+		return passwortbestaetigen;
+	}
+	public void setPasswortbestaetigen(String passwortbestaetigen) {
+		this.passwortbestaetigen = passwortbestaetigen;
 	}
 }

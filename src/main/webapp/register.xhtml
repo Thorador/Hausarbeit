@@ -18,6 +18,10 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
  					<h:inputSecret value="#{registerView.passwort}" type="password" class="form-control" placeholder="Passwort" required="true"/>
 				</div>
 				<div class="input-group col-md-10">
+  					<span class="input-group-addon" >Passwort bestätigen</span>
+ 					<h:inputSecret value="#{registerView.passwortbestaetigen}" type="password" class="form-control" placeholder="Passwort bestätigen" required="true"/>
+				</div>
+				<div class="input-group col-md-10">
 					<span class="input-group-addon" >Vorname</span>
  					<h:inputText value="#{registerView.vorname}" type="text" class="form-control" placeholder="Vorname" />
 				</div>					
@@ -40,7 +44,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				</div>
 				<div class="input-group">
 					<span >
-						<h:selectBooleanCheckbox value="#{registerView.manager}" label="Manager"> </h:selectBooleanCheckbox> Manager
+						<h:selectBooleanCheckbox value="#{registerView.rolle}" label="Manager">Manager</h:selectBooleanCheckbox>
 					</span>
 				</div>		
 				<h:commandButton action="#{registerView.register}" class="btn btn-default" value="Registrieren"></h:commandButton>

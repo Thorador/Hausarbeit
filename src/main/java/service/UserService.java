@@ -59,13 +59,11 @@ public class UserService implements IUserService {
 	
 	@Override
 	public boolean addUser(User user) {
-		
-		if (getUserByName(user.getBenutzername()).isPresent() ==false)
+		if (getUserByName(user.getBenutzername()).isPresent() == false)
 		{
 			return users.add(user);
 		}
 		return false;
-		
 	}
 
 	@Override
@@ -76,6 +74,15 @@ public class UserService implements IUserService {
 	@Override
 	public Optional<User> getUserByName(String username) {
 		return users.stream().filter(user -> user.getBenutzername().equals(username)).findFirst();
+	}
+	
+	@Override
+	public User getUserByID(int id) {
+		for (User user : users) {
+			if (user.getId() == id)
+				return user;
+		}
+		return null;
 	}
 
 }

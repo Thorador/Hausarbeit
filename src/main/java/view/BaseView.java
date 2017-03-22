@@ -15,7 +15,7 @@ public class BaseView {
 	
 	public String logout()
 	{
-		sessionService.setActiveUser(null);
+		sessionService.logout();
 		return "frontpage";
 	}
 	

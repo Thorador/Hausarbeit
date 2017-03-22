@@ -6,7 +6,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import service.LoginService;
 import service.SessionService;
 
 @Named

@@ -13,5 +13,5 @@ public interface IUserService {
 	public boolean addUser(User user);
 	public List<User> getUsers();
 	public Optional<User> getUserByName(String username);
-
+	public User getUserByID(int id);
 }

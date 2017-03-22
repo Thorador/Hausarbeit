@@ -35,6 +35,12 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <h:form>
       	<h:link outcome="veranstaltung" value="Veranstaltung anlegen" rendered="#{sessionService.isManager()}"></h:link>
       </h:form>
+      
+      <!-- Navigationsleiste Mitte -->
+      <ul class="navbar-form navbar-center">
+      <li><h:link outcome="meinProfil" value="MeinProfil" rendered="#{sessionService.isLoggedIn()}"></h:link></li>
+      </ul>
+      
       <!-- Navigationsleiste rechts -->
       <ul class="nav navbar-nav navbar-right">
         <li><h:link class="glyphicon glyphicon-user" outcome="login" value=" Login" rendered="#{sessionService.isNotLoggedIn()}"/></li>
