@@ -10,62 +10,74 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
 	<h:outputScript name="bootstrap/js/bootstrap.min.js"></h:outputScript>
-	<meta charset="utf-8"/>
+	<meta charset="utf-8" />
 </h:head>
 
 <!-- Menüleiste -->
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-  	<div class="navbar-header">
-    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-     		<span class="icon-bar"></span>
-     		<span class="icon-bar"></span>
-     		<span class="icon-bar"></span>
-     	</button>
-     		<a class="navbar-brand" href="#">STALKTAGRAM</a>
-  	</div>
+<div class="container-fluid">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target="#myNavbar">
+			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+				class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">STALKTAGRAM</a>
+	</div>
 
-      <!-- Navigationsleiste links -->
-      <h:form>
-<<<<<<< HEAD
-      	<h:link outcome="veranstaltung" value="Veranstaltung anlegen" rendered="#{sessionService.isManager()}"></h:link>
-      </h:form>
-      
-      
-      
-      <!-- Navigationsleiste rechts -->
-      <ul class="nav navbar-nav navbar-right">
-        <li><h:link class="glyphicon glyphicon-user" outcome="login" value=" Login" rendered="#{sessionService.isNotLoggedIn()}"/></li>
-        <li><h:link class="glyphicon glyphicon-log-in" outcome="register" value="Register" rendered="#{sessionService.isNotLoggedIn()}"/></li>
-        <li><h:link outcome="frontpage" value="Home" rendered="#{sessionService.isLoggedIn()}"></h:link></li>
-        <h:form>
-        <li><h:commandLink action="#{baseView.logout}" value="Logout" rendered="#{sessionService.isLoggedIn()}"></h:commandLink></li>
-      	</h:form>
-      </ul>
+	<!-- Navigationsleiste links -->
+	<h:form>
 
-      	<div class="navbar-form navbar-left">
-        	<div class="form-group">
-        	  <h:inputText type="text" class="form-control" placeholder="Veranstaltung"/>
-        	</div>
-    	    <h:commandButton type="submit" class="btn btn-default" value="Suchen"></h:commandButton>
-      		<h:link outcome="veranstaltungAnlegen" value="Veranstaltung anlegen" rendered="#{sessionService.isManager()}"></h:link>
+		<h:link outcome="veranstaltung" value="Veranstaltung anlegen"
+			rendered="#{sessionService.isManager()}"></h:link>
+	</h:form>
+
+
+
+	<!-- Navigationsleiste rechts -->
+	<ul class="nav navbar-nav navbar-right">
+		<li><h:link class="glyphicon glyphicon-user" outcome="login"
+				value=" Login" rendered="#{sessionService.isNotLoggedIn()}" /></li>
+		<li><h:link class="glyphicon glyphicon-log-in" outcome="register"
+				value="Register" rendered="#{sessionService.isNotLoggedIn()}" /></li>
+		<li><h:link outcome="frontpage" value="Home"
+				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
+		<h:form>
+			<li><h:commandLink action="#{baseView.logout}" value="Logout"
+					rendered="#{sessionService.isLoggedIn()}"></h:commandLink></li>
+		</h:form>
+	</ul>
+
+	<div class="navbar-form navbar-left">
+		<div class="form-group">
+			<h:inputText type="text" class="form-control"
+				placeholder="Veranstaltung" />
 		</div>
-		
-		<!-- Navigationsleiste Mitte -->
-        <ul class="navbar-form navbar-center">
-        	<li><h:link outcome="meinProfil" value="MeinProfil" rendered="#{sessionService.isLoggedIn()}"></h:link></li>
-        </ul>
-        
-      	<!-- Navigationsleiste rechts -->
-      	<ul class="nav navbar-nav navbar-right">
-        	<li><h:link class="glyphicon glyphicon-user" outcome="login" value=" Login" rendered="#{sessionService.isNotLoggedIn()}"/></li>
-        	<li><h:link class="glyphicon glyphicon-log-in" outcome="register" value="Register" rendered="#{sessionService.isNotLoggedIn()}"/></li>
-        	<li><h:link outcome="home" value="Home" rendered="#{sessionService.isLoggedIn()}"></h:link></li>
-        	<li><h:commandLink action="#{baseView.logout}" value="Logout" rendered="#{sessionService.isLoggedIn()}"></h:commandLink></li>
-      	</ul>
-  	  </h:form>    
-  </div><!-- /.container-fluid -->
-</nav>
+		<h:commandButton type="submit" class="btn btn-default" value="Suchen"></h:commandButton>
+		<h:link outcome="veranstaltungAnlegen" value="Veranstaltung anlegen"
+			rendered="#{sessionService.isManager()}"></h:link>
+	</div>
+
+	<!-- Navigationsleiste Mitte -->
+	<ul class="navbar-form navbar-center">
+		<li><h:link outcome="meinProfil" value="MeinProfil"
+				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
+	</ul>
+
+	<!-- Navigationsleiste rechts -->
+	<ul class="nav navbar-nav navbar-right">
+		<li><h:link class="glyphicon glyphicon-user" outcome="login"
+				value=" Login" rendered="#{sessionService.isNotLoggedIn()}" /></li>
+		<li><h:link class="glyphicon glyphicon-log-in" outcome="register"
+				value="Register" rendered="#{sessionService.isNotLoggedIn()}" /></li>
+		<li><h:link outcome="home" value="Home"
+				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
+		<li><h:commandLink action="#{baseView.logout}" value="Logout"
+				rendered="#{sessionService.isLoggedIn()}"></h:commandLink></li>
+	</ul>
+	</h:form>
+</div>
+<!-- /.container-fluid --> </nav>
 <body>
 	<ui:insert name="content" />
 </body>
