@@ -49,8 +49,8 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				value="Register" rendered="#{sessionService.isNotLoggedIn()}" /></li>
 		<li><h:link outcome="home" value="Home"
 				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
-		<li><h:commandLink action="#{baseView.logout}" value="Logout"
-				rendered="#{sessionService.isLoggedIn()}"></h:commandLink></li>
+		<li><h:form><h:commandLink action="#{baseView.logout}" value="Logout" 
+				rendered="#{sessionService.isLoggedIn()}"></h:commandLink></h:form></li>
 	</ul>
 </div>
 <!-- /.container-fluid --> </nav>

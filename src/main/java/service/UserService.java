@@ -22,15 +22,18 @@ public class UserService implements IUserService {
 	{
 		users = new ArrayList<>();
 		
-		User user = new User("admin", "admin");
+		User user = new User();
+		user.setBenutzername("admin");
+		user.setPasswort("nimda");
 		user.setRolle("manager");
 		users.add(user);
-		users.add(createUser("bob","abc", "Bob", "Baumeister", new Date(), "user", "w", "Landstraße 34", "Heimatort", 45678));
+		users.add(createUser("bob","abc", "abc", "Bob", "Baumeister", new Date(), "user", "w", "Landstraße 34", "Heimatort", 45678));
 	}
 	
 	@Override
 	public User createUser(String username,
 						   String passwort,
+						   String passwortbestaetigen,
 			  			   String vorname,
 			  			   String nachname,
 			  			   Date   geburtsdatum,
@@ -39,22 +42,26 @@ public class UserService implements IUserService {
 			  			   String strasse,
 			  			   String ort,
 			  			   int	  plz) {
-		
-		User user = new User(username, passwort);
-		user.setId(users.get(users.size() - 1).getId() + 1);
-			// ID wird hochgezï¿½hlt (+1 als die letzte ID der User-Liste)
-		user.setVorname(vorname);
-		user.setNachname(nachname);
-		user.setGeburtsdatum(geburtsdatum);
-		user.setRolle(rolle);
-		user.setGeschlecht(geschlecht);
-		user.setStrasse(strasse);
-		user.setOrt(ort);
-		user.setPlz(plz);
-		
-		
-		return user;
-		
+		if (passwort.equals(passwortbestaetigen))
+		{
+			User user = new User();
+			user.setId(users.get(users.size() - 1).getId() + 1);
+				// ID wird hochgezählt (+1 als die letzte ID der User-Liste)
+			user.setBenutzername(username);
+			user.setPasswort(String.valueOf(passwort.hashCode()));
+			user.setVorname(vorname);
+			user.setNachname(nachname);
+			user.setGeburtsdatum(geburtsdatum);
+			user.setRolle(rolle);
+			user.setGeschlecht(geschlecht);
+			user.setStrasse(strasse);
+			user.setOrt(ort);
+			user.setPlz(plz);
+			return user;
+		} else
+		{
+			return null;
+		}		
 	}
 	
 	@Override
