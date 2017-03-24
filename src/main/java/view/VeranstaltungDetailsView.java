@@ -44,11 +44,16 @@ public class VeranstaltungDetailsView {
 		this.setBeschreibung(veranstaltung.getBeschreibung());
 	}
 
-	public boolean reservieren() {
+	public String reservieren() {
 		reservierungService.createReservierung(sessionService.getActiveUser().getId(), 
 											   veranstaltungService.getVeranstaltungByName(getVeranstaltungsname()).get().getId(),
 											   getAnzTicketsReservierung());
-		return true;
+		return "VeranstaltungDetails.jsf";
+	}
+	
+	public String cancel()
+	{
+		return "home.jsf";
 	}
 
 	public int getId() {

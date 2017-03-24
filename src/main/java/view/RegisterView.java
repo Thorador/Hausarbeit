@@ -51,7 +51,7 @@ public class RegisterView implements java.io.Serializable{
 	
 	public String cancel()
 	{
-		return "frontpage.jsf";
+		return "home.jsf";
 	}
 	
 	public String getVorname() {
