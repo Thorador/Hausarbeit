@@ -16,11 +16,11 @@ public class User {
 	private String ort;
 	private int plz;
 	
-	public User(String benutzername,String passwort)
+	public User()
 	{
-		this.setBenutzername(benutzername);
-		this.setPasswort(passwort);
+
 	}
+
 	public int getId() {
 		return id;
 	}

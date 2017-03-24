@@ -8,7 +8,7 @@ import model.User;
 
 public interface IUserService {
 	
-	public User createUser(String username,String passwort, String vorname, String nachname, Date   geburtsdatum,
+	public User createUser(String username,String passwort, String passwortbestaetigen, String vorname, String nachname, Date   geburtsdatum,
 			   			   String rolle, String geschlecht, String strasse, String ort, int	  plz);
 	public boolean addUser(User user);
 	public List<User> getUsers();

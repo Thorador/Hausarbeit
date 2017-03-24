@@ -39,7 +39,7 @@ public class RegisterView implements java.io.Serializable{
 	{	
 		if (getPasswort().equals(getPasswortbestaetigen()))
 		{
-			User user = userService.createUser(getBenutzername(), getPasswort(), 
+			User user = userService.createUser(getBenutzername(), getPasswort(), getPasswortbestaetigen(),
 										   getVorname(), getNachname(), getGeburtsdatum(), 
 										   getRolle(), getGeschlecht(), getStrasse(), 
 										   getOrt(), getPlz()); 
