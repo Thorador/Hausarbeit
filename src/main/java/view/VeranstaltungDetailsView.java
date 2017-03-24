@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.Veranstaltung;
+import service.ReservierungService;
+import service.SessionService;
 import service.VeranstaltungService;
 
 @Named
@@ -22,6 +24,7 @@ public class VeranstaltungDetailsView {
 	private Date datum;
 	private int maxTickets;
 	private int bereitsReservierteTickets;
+	private int anzTicketsReservierung;
 	private String ort;
 	private double preis;
 	private boolean veroeffentlicht;
@@ -29,12 +32,24 @@ public class VeranstaltungDetailsView {
 	@Inject
 	VeranstaltungService veranstaltungService;
 	
+	@Inject
+	ReservierungService reservierungService;
+	
+	@Inject
+	SessionService sessionService;
+	
 	public void init()
 	{
 		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungByName(getVeranstaltungsname()).get();
 		this.setBeschreibung(veranstaltung.getBeschreibung());
 	}
-	
+
+	public boolean reservieren() {
+		reservierungService.createReservierung(sessionService.getActiveUser().getId(), 
+											   veranstaltungService.getVeranstaltungByName(getVeranstaltungsname()).get().getId(),
+											   getAnzTicketsReservierung());
+		return true;
+	}
 
 	public int getId() {
 		return id;
@@ -71,6 +86,12 @@ public class VeranstaltungDetailsView {
 	}
 	public void setBereitsReservierteTickets(int bereitsReservierteTickets) {
 		this.bereitsReservierteTickets = bereitsReservierteTickets;
+	}
+	public int getAnzTicketsReservierung() {
+		return anzTicketsReservierung;
+	}
+	public void setAnzTicketsReservierung(int anzTicketsReservierung) {
+		this.anzTicketsReservierung = anzTicketsReservierung;
 	}
 	public String getOrt() {
 		return ort;

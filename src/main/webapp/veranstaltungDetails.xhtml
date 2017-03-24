@@ -40,8 +40,10 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   				<h:outputText value="#{veranstaltungDetailsView.maxTickets}" class="form-control"/>
 			</div>
 			<div class="btn-group" style="margin-left:25%; width:50%">
-				<h:commandButton action="#{veranstaltungAnlegenView.create}" value="Reservieren" class="btn btn-default"></h:commandButton>
-				<h:commandButton action="#{veranstaltungAnlegenView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default"></h:commandButton>
+				<span>Zu Reservierende Tickets</span>
+  				<h:inputText value="#{veranstaltungDetailsView.anzTicketsReservierung}" class="form-control"/>
+				<h:commandButton action="#{veranstaltungDetailsView.reservieren}" value="Reservieren" class="btn btn-default"></h:commandButton>
+				<h:commandButton action="#{veranstaltungDetailsView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default"></h:commandButton>
 			</div>	
 			</h:form>
 		</ui:define>	
