@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -44,7 +46,7 @@ public class RegisterView implements java.io.Serializable{
 										   getRolle(), getGeschlecht(), getStrasse(), 
 										   getOrt(), getPlz()); 
 		
-			return userService.addUser(user) ? "frontpage.jsf" : "register.jsf";
+			return userService.addUser(user) ? "home.jsf" : "register.jsf";
 		}
 		return "register.jsf";
 	}
@@ -53,6 +55,10 @@ public class RegisterView implements java.io.Serializable{
 	{
 		return "home.jsf";
 	}
+	
+	
+	
+	
 	
 	public String getVorname() {
 		return vorname;

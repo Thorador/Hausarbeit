@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -9,39 +10,65 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<ui:composition template="base.xhtml">
 		<ui:define name="content">
 			<h:form id="register-form">
-				<div class="input-group col-md-10">
-  					<span class="input-group-addon" >Benutzername</span>
-  					<h:inputText value="#{registerView.benutzername}" type="text" class="form-control" placeholder="Benutzername" required="true"/>
+				<div class="row">
+					<DIV class="col-md-2"><span class="input-group-addon" >Benutzername</span></DIV>
+  					<DIV class="col-md-7">
+  						<h:inputText id="benutzername" value="#{registerView.benutzername}" type="text" class="form-control" placeholder="Benutzername">
+  					    </h:inputText>
+  					</DIV>
+ 					<div class="col-md-3" />
+				</div>	
+				
+				
+				<div class="row">
+					<DIV class="col-md-2"><span class="input-group-addon" >Passwort</span></DIV>
+  					<DIV class="col-md-7">
+  						<h:inputSecret value="#{registerView.passwort}" type="password" class="form-control" placeholder="Passwort" required="true"/>
+  					</DIV>
+  					<div class="col-md-3" />
+				</div>	
+				
+				<div class="row">
+					<DIV class="col-md-2"><span class="input-group-addon" >Passwort bestätigen</span></DIV>
+  					<DIV class="col-md-7">
+  						<h:inputSecret value="#{registerView.passwortbestaetigen}" type="password" class="form-control" placeholder="Passwort bestätigen" required="true"/>
+  					</DIV>
+  					<div class="col-md-3" />
+				</div>	
+				
+				<div class="row">
+					<DIV class="col-md-2"><span class="input-group-addon" >Vorname</span></DIV>
+  					<DIV class="col-md-7">
+  						<h:inputText id="vorname" value="#{registerView.vorname}" type="text" class="form-control" placeholder="Vorname">
+  							<f:validator validatorId="AlphaValidator"/>
+ 						</h:inputText>
+ 					</DIV>
+ 					<div class="col-md-3"><h:message for="vorname" errorStyle="color:red"></h:message></div>
+				</div>	
+								
+				<div class="row">
+					<DIV class="col-md-2"><span class="input-group-addon" >Nachname</span></DIV>
+  					<DIV class="col-md-7">
+  						<h:inputText id="nachname" value="#{registerView.nachname}" type="text" class="form-control" placeholder="Nachname">
+  							<f:validator validatorId="AlphaValidator"/>
+ 					    </h:inputText>
+ 					</DIV>
+ 					<div class="col-md-3"><h:message for="nachname" errorStyle="color:red"></h:message></div>
+				</div>		
+				
+				<div class="row">
+					<DIV class="col-md-2"><span class="input-group-addon" >Geschlecht</span></DIV>
+  					<DIV class="col-md-7">
+						<h:selectOneMenu value="#{registerView.geschlecht}" required="true">
+							<f:selectItem itemValue="männlich" itemLabel="Männlich"></f:selectItem>
+							<f:selectItem itemValue="weiblich" itemLabel="Weiblich"></f:selectItem>
+							<f:selectItem itemValue="apache-kampfhubschrauber" itemLabel="Apache-Kampfhubschrauber"></f:selectItem>
+						</h:selectOneMenu>
+					</DIV>
+					<div class="col-md-3"></div>
 				</div>
-				<div class="input-group col-md-10">
-  					<span class="input-group-addon" >Passwort</span>
- 					<h:inputSecret value="#{registerView.passwort}" type="password" class="form-control" placeholder="Passwort" required="true"/>
-				</div>
-				<div class="input-group col-md-10">
-  					<span class="input-group-addon" >Passwort bestätigen</span>
- 					<h:inputSecret value="#{registerView.passwortbestaetigen}" type="password" class="form-control" placeholder="Passwort bestätigen" required="true"/>
-				</div>
-				<div class="input-group col-md-10">
-					<span class="input-group-addon" >Vorname</span>
- 					<h:inputText value="#{registerView.vorname}" type="text" class="form-control" placeholder="Vorname" />
-				</div>					
-				<div class="input-group col-md-10">
-  					<span class="input-group-addon" >Nachname</span>
-  					<h:inputText value="#{registerView.nachname}" type="text" class="form-control" placeholder="Nachname" />
-				</div>					
-				<div class="input-group col-md-10">
-  					<span class="input-group-addon" >Geburtsdatum</span>
-  					<h:inputText id="geburtsdatumEingabe" value="#{registerView.geburtsdatum}" class="form-control" placeholder="DD.MM.YYYY"><f:convertDateTime pattern="dd.mm.yyyy"></f:convertDateTime></h:inputText>			
-				</div>
-				<h:message for = "geburtsdatumEingabe" style = "color:red"  />						
-				<div> 
-					<h:selectOneRadio value="#{registerView.geschlecht}" required="true">
-					Geschlecht:
-						<f:selectItem itemValue="männlich" itemLabel="Männlich"></f:selectItem>
-						<f:selectItem itemValue="weiblich" itemLabel="Weiblich"></f:selectItem>
-						<f:selectItem itemValue="apache-kampfhubschrauber" itemLabel="Apache-Kampfhubschrauber"></f:selectItem>
-					</h:selectOneRadio>	
-				</div>
+							
+				
 				<div class="input-group">
 					<span>
 						<h:selectBooleanCheckbox value="manager" label="Manager"> </h:selectBooleanCheckbox> Manager
