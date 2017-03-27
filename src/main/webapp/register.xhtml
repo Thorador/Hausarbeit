@@ -14,26 +14,31 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 					<DIV class="col-md-2"><span class="input-group-addon" >Benutzername</span></DIV>
   					<DIV class="col-md-7">
   						<h:inputText id="benutzername" value="#{registerView.benutzername}" type="text" class="form-control" placeholder="Benutzername">
-  					    </h:inputText>
+  							<f:validator validatorId="BenutzernameValidator"/>
+ 						</h:inputText>
   					</DIV>
- 					<div class="col-md-3" />
+ 					<div class="col-md-3"><h:message for="benutzername" errorStyle="color:red"></h:message></div>
 				</div>	
 				
 				
 				<div class="row">
 					<DIV class="col-md-2"><span class="input-group-addon" >Passwort</span></DIV>
   					<DIV class="col-md-7">
-  						<h:inputSecret value="#{registerView.passwort}" type="password" class="form-control" placeholder="Passwort" required="true"/>
+  						<h:inputSecret id="passwort" value="#{registerView.passwort}" type="password" class="form-control" placeholder="Passwort" required="true">
+  							<f:validator validatorId="PasswortValidator"/>
+ 						</h:inputSecret>
   					</DIV>
-  					<div class="col-md-3" />
+  					<div class="col-md-3"><h:message for="passwort" errorStyle="color:red"></h:message></div>
 				</div>	
 				
 				<div class="row">
 					<DIV class="col-md-2"><span class="input-group-addon" >Passwort bestätigen</span></DIV>
   					<DIV class="col-md-7">
-  						<h:inputSecret value="#{registerView.passwortbestaetigen}" type="password" class="form-control" placeholder="Passwort bestätigen" required="true"/>
+  						<h:inputSecret value="#{registerView.passwortbestaetigen}" type="password" class="form-control" placeholder="Passwort bestätigen" required="true">
+  							<f:validator validatorId="PasswortValidator"/>
+  						</h:inputSecret>
   					</DIV>
-  					<div class="col-md-3" />
+  					<div class="col-md-3"></div>
 				</div>	
 				
 				<div class="row">

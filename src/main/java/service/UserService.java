@@ -73,6 +73,17 @@ public class UserService implements IUserService {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean benutzernameVergeben(String benutzername)
+	{
+		Optional<User> user = getUserByName(benutzername);
+		if (user.isPresent())
+		{
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public List<User> getUsers() {

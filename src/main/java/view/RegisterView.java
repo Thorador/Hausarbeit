@@ -9,6 +9,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.xml.bind.ValidationException;
 
 import model.User;
 import service.UserService;
@@ -41,12 +42,24 @@ public class RegisterView implements java.io.Serializable{
 	{	
 		if (getPasswort().equals(getPasswortbestaetigen()))
 		{
-			User user = userService.createUser(getBenutzername(), getPasswort(), getPasswortbestaetigen(),
-										   getVorname(), getNachname(), getGeburtsdatum(), 
-										   getRolle(), getGeschlecht(), getStrasse(), 
-										   getOrt(), getPlz()); 
-		
-			return userService.addUser(user) ? "home.jsf" : "register.jsf";
+			if (!userService.benutzernameVergeben(getBenutzername()))
+			{
+				User user = userService.createUser(getBenutzername(), getPasswort(), getPasswortbestaetigen(),
+						   getVorname(), getNachname(), getGeburtsdatum(), 
+						   getRolle(), getGeschlecht(), getStrasse(), 
+						   getOrt(), getPlz()); 
+
+				return userService.addUser(user) ? "home.jsf" : "register.jsf";
+			}
+			else
+			{// Benutzername schon vergeben -> Ausgabe Fehlermeldung
+				setBenutzername("Benutzername schon vergeben.");								
+			}
+		}
+		else
+		{// Passwörter stimmen nich überein -> Ausgabe Fehlermeldung
+			setPasswort("Passwörter stimmen nicht überein.");
+			setPasswortbestaetigen("Passwörter stimmen nicht überein.");
 		}
 		return "register.jsf";
 	}
