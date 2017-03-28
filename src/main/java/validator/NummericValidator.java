@@ -21,7 +21,7 @@ public class NummericValidator implements Validator {
 			throw new ValidatorException(message);
 		}		
 		else 
-		{
+		{	// Wert größer als 0
 			if (feld.matches("[0]+"))
 			{
 				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Der Wert muss größer sein als Null.", null);
