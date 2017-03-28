@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.omg.CORBA.portable.ValueBase;
+
 import model.Veranstaltung;
 import service.ReservierungService;
 import service.SessionService;
@@ -24,7 +26,7 @@ public class VeranstaltungDetailsView {
 	private Date datum;
 	private int maxTickets;
 	private int bereitsReservierteTickets;
-	private int anzTicketsReservierung;
+	private String anzTicketsReservierung;
 	private String ort;
 	private double preis;
 	private boolean veroeffentlicht;
@@ -47,7 +49,7 @@ public class VeranstaltungDetailsView {
 	public String reservieren() {
 		reservierungService.createReservierung(sessionService.getActiveUser().getId(), 
 											   veranstaltungService.getVeranstaltungByName(getVeranstaltungsname()).get().getId(),
-											   getAnzTicketsReservierung());
+											   Integer.valueOf(getAnzTicketsReservierung()));
 		return "VeranstaltungDetails.jsf";
 	}
 	
@@ -92,10 +94,10 @@ public class VeranstaltungDetailsView {
 	public void setBereitsReservierteTickets(int bereitsReservierteTickets) {
 		this.bereitsReservierteTickets = bereitsReservierteTickets;
 	}
-	public int getAnzTicketsReservierung() {
+	public String getAnzTicketsReservierung() {
 		return anzTicketsReservierung;
 	}
-	public void setAnzTicketsReservierung(int anzTicketsReservierung) {
+	public void setAnzTicketsReservierung(String anzTicketsReservierung) {
 		this.anzTicketsReservierung = anzTicketsReservierung;
 	}
 	public String getOrt() {

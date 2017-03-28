@@ -29,21 +29,24 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			<div>
   				<span>Zeit</span>
   				
-  				<outputText type="text" class="form-control" placeholder="Beginn der Veranstaltung"/>
+  				<h:outputText type="text" class="form-control" placeholder="Beginn der Veranstaltung"/>
 			</div>
 			<div>
   				<span>Ort</span>
   				<h:outputText value="#{veranstaltungDetailsView.ort}" type="text" class="form-control"/>
 			</div>
 			<div>
-  				<span>Anzahl der Tickets</span>
+  				<span>Anzahl der verfügbaren Tickets</span>
   				<h:outputText value="#{veranstaltungDetailsView.maxTickets}" class="form-control"/>
 			</div>
-			<div class="btn-group" style="margin-left:25%; width:50%">
-				<span>Zu Reservierende Tickets</span>
-  				<h:inputText value="#{veranstaltungDetailsView.anzTicketsReservierung}" class="form-control"/>
-				<h:commandButton action="#{veranstaltungDetailsView.reservieren}" value="Reservieren" class="btn btn-default"></h:commandButton>
-				<h:commandButton action="#{veranstaltungDetailsView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default"></h:commandButton>
+			<div class="btn-group">
+				<h:form rendered="#{sessionService.isLoggedIn()}"><span>Zu Reservierende Tickets</span></h:form>
+  				<h:inputText id="anzTicketsReservierung" value="#{veranstaltungDetailsView.anzTicketsReservierung}" class="form-control" rendered="#{sessionService.isLoggedIn()}">
+  					<f:validator validatorId="NummericValidator"/>
+  				</h:inputText>
+  				<h:message for="anzTicketsReservierung" errorStyle="color:red"></h:message>
+				<h:commandButton action="#{veranstaltungDetailsView.reservieren}" value="Reservieren" class="btn btn-default" rendered="#{sessionService.isLoggedIn()}" />
+				<h:commandButton action="#{veranstaltungDetailsView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default" />
 			</div>	
 			</h:form>
 		</ui:define>	
