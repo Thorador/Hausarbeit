@@ -15,7 +15,7 @@
 		JTA: 			Container- oder Bean-Managed-Transaktion.
 						Die Transaktion wird über die UserTransacation oder @Transactional gesteuert.
  	-->
-	<persistence-unit name="h2"	transaction-type="JTA">
+	<persistence-unit name="mysql"	transaction-type="JTA">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		 
 		<!-- 
@@ -23,7 +23,7 @@
         	kann hier der JNDI Name der Datasource angegeben werden
         	<jta-data-source>java:app/jdbc/h2</jta-data-source>
        	-->
-        <jta-data-source>java:app/jdbc/h2</jta-data-source>
+        <jta-data-source>java:app/jdbc/mysql</jta-data-source>
         
 		
 		<!-- 
