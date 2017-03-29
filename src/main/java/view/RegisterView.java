@@ -12,6 +12,7 @@ import javax.inject.Named;
 import javax.xml.bind.ValidationException;
 
 import model.User;
+import service.SessionService;
 import service.UserService;
 
 @Named
@@ -23,15 +24,14 @@ public class RegisterView implements java.io.Serializable{
 	private String passwortbestaetigen;
 	private String vorname;
 	private String nachname;
-	private Date geburtsdatum;
-	private String rolle;
+	private boolean manager;
 	private String geschlecht;
-	private String strasse;
-	private String ort;
-	private int plz;
 	
 	@Inject
 	private UserService userService;
+	
+	@Inject
+	private SessionService sessionService;
 	
 	public RegisterView()
 	{
@@ -44,22 +44,26 @@ public class RegisterView implements java.io.Serializable{
 		{
 			if (!userService.benutzernameVergeben(getBenutzername()))
 			{
-				User user = userService.createUser(getBenutzername(), getPasswort(), getPasswortbestaetigen(),
-						   getVorname(), getNachname(), getGeburtsdatum(), 
-						   getRolle(), getGeschlecht(), getStrasse(), 
-						   getOrt(), getPlz()); 
-
-				return userService.addUser(user) ? "home.jsf" : "register.jsf";
+				User user = new User();
+				user.setBenutzername(getBenutzername());
+				user.setPasswort(String.valueOf(getPasswort().hashCode()));
+				user.setVorname(getVorname());
+				user.setNachname(getNachname());
+				user.setGeschlecht(getGeschlecht());
+				user.setManager(isManager());
+				userService.addUser(user);
+				sessionService.setActiveUser(user);
+				return "home.jsf";
 			}
 			else
 			{// Benutzername schon vergeben -> Ausgabe Fehlermeldung
-				setBenutzername("Benutzername schon vergeben.");								
+				setBenutzername("Benutzername schon vergeben.");
 			}
 		}
 		else
-		{// Passwörter stimmen nich überein -> Ausgabe Fehlermeldung
-			setPasswort("Passwörter stimmen nicht überein.");
-			setPasswortbestaetigen("Passwörter stimmen nicht überein.");
+		{// Passwï¿½rter stimmen nich ï¿½berein -> Ausgabe Fehlermeldung
+			setPasswort("Passwï¿½rter stimmen nicht ï¿½berein.");
+			setPasswortbestaetigen("Passwï¿½rter stimmen nicht ï¿½berein.");
 		}
 		return "register.jsf";
 	}
@@ -85,41 +89,11 @@ public class RegisterView implements java.io.Serializable{
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
-	public Date getGeburtsdatum() {
-		return geburtsdatum;
-	}
-	public void setGeburtsdatum(Date geburtsdatum) {
-		this.geburtsdatum = geburtsdatum;
-	}
-	public String getRolle() {
-		return rolle;
-	}
-	public void setRolle(String rolle) {
-		this.rolle = rolle;
-	}
 	public String getGeschlecht() {
 		return geschlecht;
 	}
 	public void setGeschlecht(String geschlecht) {
 		this.geschlecht = geschlecht;
-	}
-	public String getStrasse() {
-		return strasse;
-	}
-	public void setStrasse(String strasse) {
-		this.strasse = strasse;
-	}
-	public String getOrt() {
-		return ort;
-	}
-	public void setOrt(String ort) {
-		this.ort = ort;
-	}
-	public int getPlz() {
-		return plz;
-	}
-	public void setPlz(int plz) {
-		this.plz = plz;
 	}
 	public String getBenutzername() {
 		return benutzername;
@@ -138,5 +112,13 @@ public class RegisterView implements java.io.Serializable{
 	}
 	public void setPasswortbestaetigen(String passwortbestaetigen) {
 		this.passwortbestaetigen = passwortbestaetigen;
+	}
+
+	public boolean isManager() {
+		return manager;
+	}
+
+	public void setManager(boolean manager) {
+		this.manager = manager;
 	}
 }

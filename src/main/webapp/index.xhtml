@@ -6,14 +6,10 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <body>
-	<ui:composition template="base.xhtml">
-		<!-- hier wird gesagt welches template verwendet wird -->
-		<ui:define name="content">
-			<!-- das muss überschrieben werden um inhalt einzufügen -->
-			<div class="jumbotron">
-				<H1>asdasf</H1>
-			</div>
-		</ui:define>
+	<ui:composition>
+		<ui:include src="home.jsf">
+
+		</ui:include>
 	</ui:composition>
 </body>
 </html>

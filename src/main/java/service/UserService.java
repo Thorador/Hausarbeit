@@ -7,28 +7,65 @@ import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Disposes;
+import javax.enterprise.inject.Produces;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import model.User;
 import serviceInterface.IUserService;
 
-@Named
+
 @ApplicationScoped
 public class UserService implements IUserService {
 
 	List<User> users;
+	
 
+
+	@Inject
+	private EntityManager entityManager;
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	@Produces
+	public EntityManager createEntityManager()
+	{
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("mysql");
+		return emf.createEntityManager();
+	}
+	public void disposeEntityManager(@Disposes EntityManager em){
+		em.close();		
+	}
+	
 	public UserService()
 	{
 		users = new ArrayList<>();
 		
 		User user = new User();
 		user.setBenutzername("admin");
-		user.setPasswort("nimda");
-		user.setRolle("manager");
-		users.add(user);
-		users.add(createUser("bob","abc", "abc", "Bob", "Baumeister", new Date(), "user", "w", "Landstraße 34", "Heimatort", 45678));
+		user.setPasswort(String.valueOf("nimda".hashCode()));
+		user.setManager(true);
+		user.setGeschlecht("mÃ¤nnlich");
+		user.setVorname("r");
+		user.setNachname("h");
+
+
+
 	}
 	
 	@Override
@@ -47,17 +84,13 @@ public class UserService implements IUserService {
 		{
 			User user = new User();
 			user.setId(users.get(users.size() - 1).getId() + 1);
-				// ID wird hochgezählt (+1 als die letzte ID der User-Liste)
+				// ID wird hochgezï¿½hlt (+1 als die letzte ID der User-Liste)
 			user.setBenutzername(username);
 			user.setPasswort(String.valueOf(passwort.hashCode()));
 			user.setVorname(vorname);
 			user.setNachname(nachname);
-			user.setGeburtsdatum(geburtsdatum);
-			user.setRolle(rolle);
+			user.setManager(true);
 			user.setGeschlecht(geschlecht);
-			user.setStrasse(strasse);
-			user.setOrt(ort);
-			user.setPlz(plz);
 			return user;
 		} else
 		{
@@ -65,20 +98,18 @@ public class UserService implements IUserService {
 		}		
 	}
 	
+	@Transactional
 	@Override
-	public boolean addUser(User user) {
-		if (getUserByName(user.getBenutzername()).isPresent() == false)
-		{
-			return users.add(user);
-		}
-		return false;
+	public void addUser(User user) {
+			this.entityManager.getTransaction().begin();
+			this.entityManager.persist(user);
+			this.entityManager.getTransaction().commit();
 	}
 	
 	@Override
 	public boolean benutzernameVergeben(String benutzername)
 	{
-		Optional<User> user = getUserByName(benutzername);
-		if (user.isPresent())
+		if (getUserByName(benutzername) != null)
 		{
 			return true;
 		}
@@ -91,8 +122,17 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public Optional<User> getUserByName(String username) {
-		return users.stream().filter(user -> user.getBenutzername().equals(username)).findFirst();
+	public User getUserByName(String username) {
+		try{
+		TypedQuery<User> userQuery = entityManager.createQuery("Select u From User u where u.benutzername = :benutzername", User.class);
+		User user = (User) userQuery.setParameter("benutzername", username).getSingleResult();
+		return user;
+		} catch (NoResultException e)
+		{
+			return null;
+		} catch (NonUniqueResultException e) {
+			return null;
+		}	
 	}
 	
 	@Override

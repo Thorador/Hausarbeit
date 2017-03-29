@@ -1,21 +1,25 @@
 package model;
 
-import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="user")
 public class User {
 
+	@Id @GeneratedValue
 	private int id;
+	@Column(unique=true)
 	private String benutzername;
 	private String passwort;
 	private String vorname;
 	private String nachname;
-	private Date geburtsdatum;
-	private String rolle;
+	private boolean manager;
 	private String geschlecht;
-	private String strasse;
-	private String ort;
-	private int plz;
 	
 	public User()
 	{
@@ -40,41 +44,11 @@ public class User {
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
-	public Date getGeburtsdatum() {
-		return geburtsdatum;
-	}
-	public void setGeburtsdatum(Date geburtsdatum) {
-		this.geburtsdatum = geburtsdatum;
-	}
-	public String getRolle() {
-		return rolle;
-	}
-	public void setRolle(String rolle) {
-		this.rolle = rolle;
-	}
 	public String getGeschlecht() {
 		return geschlecht;
 	}
 	public void setGeschlecht(String geschlecht) {
 		this.geschlecht = geschlecht;
-	}
-	public String getStrasse() {
-		return strasse;
-	}
-	public void setStrasse(String strasse) {
-		this.strasse = strasse;
-	}
-	public String getOrt() {
-		return ort;
-	}
-	public void setOrt(String ort) {
-		this.ort = ort;
-	}
-	public int getPlz() {
-		return plz;
-	}
-	public void setPlz(int plz) {
-		this.plz = plz;
 	}
 	public String getBenutzername() {
 		return benutzername;
@@ -87,5 +61,13 @@ public class User {
 	}
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
+	}
+
+	public boolean isManager() {
+		return manager;
+	}
+
+	public void setManager(boolean manager) {
+		this.manager = manager;
 	}
 }

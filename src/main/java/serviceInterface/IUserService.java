@@ -10,9 +10,9 @@ public interface IUserService {
 	
 	public User createUser(String username,String passwort, String passwortbestaetigen, String vorname, String nachname, Date   geburtsdatum,
 			   			   String rolle, String geschlecht, String strasse, String ort, int	  plz);
-	public boolean addUser(User user);
+	public void addUser(User user);
 	public boolean benutzernameVergeben(String benutzername);
 	public List<User> getUsers();
-	public Optional<User> getUserByName(String username);
+	public User getUserByName(String username);
 	public User getUserByID(int id);
 }

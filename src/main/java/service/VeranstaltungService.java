@@ -5,11 +5,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
+import com.sun.faces.config.InitFacesContext;
 
 import model.Veranstaltung;
 import serviceInterface.IVeranstaltungService;
@@ -21,28 +26,36 @@ public class VeranstaltungService implements IVeranstaltungService {
 	List<Veranstaltung> veranstaltungen;
 	
 	@Inject
-	SessionService sessionService;
+	private SessionService sessionService;
+	
+	@Inject
+	private EntityManager entityManager;
 	
 	public VeranstaltungService()
+	{
+
+	}
+	
+	@PostConstruct
+	public void init()
 	{
 		veranstaltungen = new ArrayList<>();
 		Veranstaltung veranstaltung = new Veranstaltung();
 		veranstaltung.setVeranstaltungsname("J-Law stalken");
 		veranstaltung.setBeschreibung("kommt zum stalken");
 		veranstaltung.setDatum(new Date(2011, 11, 11));
-		veranstaltungen.add(veranstaltung);
+		addVeranstaltung(veranstaltung);
 		Veranstaltung veranstaltung2 = new Veranstaltung();
 		veranstaltung2.setBeschreibung("kommt zum stalken");
 		veranstaltung2.setDatum(new Date(2011, 11, 11));
 		veranstaltung2.setVeranstaltungsname("Emma Watson stalken");
-		veranstaltungen.add(veranstaltung2);
+		addVeranstaltung(veranstaltung2);
 		Veranstaltung veranstaltung3 = new Veranstaltung();
 		veranstaltung3.setBeschreibung("kommt zum stalken");
 		veranstaltung3.setDatum(new Date(2011, 11, 11));
 		veranstaltung3.setVeranstaltungsname("Ryan Gosling stalken");
-		veranstaltungen.add(veranstaltung3);
+		addVeranstaltung(veranstaltung3);
 	}
-	
 	@Override
 	public Veranstaltung createVeranstaltung(String veranstaltungsname,
 											 String beschreibung,
@@ -73,12 +86,16 @@ public class VeranstaltungService implements IVeranstaltungService {
 	@Override
 	public void addVeranstaltung(Veranstaltung veranstaltung) {
 		
-		veranstaltungen.add(veranstaltung);
-		
+		this.entityManager.getTransaction().begin();
+		this.entityManager.persist(veranstaltung);
+		this.entityManager.getTransaction().commit();
+				
 	}
 
 	@Override
 	public List<Veranstaltung> getVeranstaltungen() {
+		TypedQuery<Veranstaltung> veranstaltungenQuery = entityManager.createQuery("Select v From Veranstaltung v", Veranstaltung.class);
+		List<Veranstaltung> veranstaltungen = veranstaltungenQuery.getResultList();
 		return veranstaltungen;
 	}
 
@@ -86,6 +103,14 @@ public class VeranstaltungService implements IVeranstaltungService {
 	public Optional<Veranstaltung> getVeranstaltungByName(String veranstaltungsname) {
 
 		return veranstaltungen.stream().filter(veranstaltung -> veranstaltung.getVeranstaltungsname().equals(veranstaltungsname)).findFirst();
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 }

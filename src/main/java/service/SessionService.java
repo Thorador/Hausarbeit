@@ -47,7 +47,7 @@ public class SessionService implements Serializable{
 	{
 		if (isLoggedIn())
 		{
-			if (activeUser.getRolle() == "manager")
+			if (activeUser.isManager())
 			{
 				return true;
 			}
@@ -57,12 +57,12 @@ public class SessionService implements Serializable{
 	
 	public boolean login(String benutzername, String passwort) {
 		passwort = String.valueOf(passwort.hashCode());
-		Optional<User> user = userService.getUserByName(benutzername);
-		if(user.isPresent())
+		User user = userService.getUserByName(benutzername);
+		if(user != null)
 		{
-			if(passwort.equals(user.get().getPasswort()))
+			if(passwort.equals(user.getPasswort()))
 				{
-					setActiveUser(user.get());
+					setActiveUser(user);
 					return true;
 				}
 		}

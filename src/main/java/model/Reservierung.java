@@ -2,8 +2,17 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="reservierung")
 public class Reservierung {
 
+	@Id @GeneratedValue
+	private int id;
 	private int reservierungscode;
 	private int userID;
 	private int veranstaltungID;

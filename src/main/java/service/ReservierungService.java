@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 import model.Reservierung;
 import serviceInterface.IReservierungService;
 
-@ManagedBean
+
 @Named
 @ApplicationScoped
 public class ReservierungService implements IReservierungService {

@@ -43,18 +43,14 @@ public class MeinProfilView implements java.io.Serializable{
 	}
 	
 	public String importBenutzer()
-	{// Füllen der Werte auf der Benutzeroberfäche
+	{// Fï¿½llen der Werte auf der Benutzeroberfï¿½che
 		if (sessionService != null && sessionService.isLoggedIn())
 		{
 			User user = sessionService.getActiveUser();
 			setBenutzername(user.getBenutzername());
 			setVorname(user.getVorname());
 			setNachname(user.getNachname());
-			setGeburtsdatum(user.getGeburtsdatum());
 			setGeschlecht(user.getGeschlecht());
-			setStrasse(user.getStrasse());
-			setOrt(user.getOrt());
-			setPlz(user.getPlz());
 		}else
 		{
 			setBenutzername("Kein Benutzer eingeloggt!");
@@ -73,11 +69,7 @@ public class MeinProfilView implements java.io.Serializable{
 	{
 		sessionService.getActiveUser().setVorname(getVorname());
 		sessionService.getActiveUser().setNachname(getNachname());
-		sessionService.getActiveUser().setGeburtsdatum(getGeburtsdatum());
 		sessionService.getActiveUser().setGeschlecht(getGeschlecht());
-		sessionService.getActiveUser().setStrasse(getStrasse());
-		sessionService.getActiveUser().setOrt(getOrt());
-		sessionService.getActiveUser().setPlz(getPlz());
 		
 		return "frontpage.jsf";
 	}

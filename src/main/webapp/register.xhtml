@@ -65,9 +65,9 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 					<DIV class="col-md-2"><span class="input-group-addon" >Geschlecht</span></DIV>
   					<DIV class="col-md-7">
 						<h:selectOneMenu value="#{registerView.geschlecht}" required="true">
-							<f:selectItem itemValue="männlich" itemLabel="Männlich"></f:selectItem>
-							<f:selectItem itemValue="weiblich" itemLabel="Weiblich"></f:selectItem>
-							<f:selectItem itemValue="apache-kampfhubschrauber" itemLabel="Apache-Kampfhubschrauber"></f:selectItem>
+							<f:selectItem itemValue="Männlich" itemLabel="Männlich"></f:selectItem>
+							<f:selectItem itemValue="Weiblich" itemLabel="Weiblich"></f:selectItem>
+							<f:selectItem itemValue="Apache-Kampfhubschrauber" itemLabel="Apache-Kampfhubschrauber"></f:selectItem>
 						</h:selectOneMenu>
 					</DIV>
 					<div class="col-md-3"></div>
@@ -76,7 +76,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				
 				<div class="input-group">
 					<span>
-						<h:selectBooleanCheckbox value="manager" label="Manager"> </h:selectBooleanCheckbox> Manager
+						<h:selectBooleanCheckbox value="{registerView.manager}" label="Manager"> </h:selectBooleanCheckbox> Manager
 					</span>
 				</div>		
 				<h:commandButton action="#{registerView.register}" class="btn btn-default" value="Registrieren"></h:commandButton>

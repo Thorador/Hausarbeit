@@ -2,8 +2,16 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="veranstaltung")
 public class Veranstaltung {
 
+	@Id @GeneratedValue
 	private int id;
 	private String veranstaltungsname;
 	private String beschreibung;

@@ -35,11 +35,6 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			rendered="#{sessionService.isManager()}"></h:link>
 	</div>
 
-	<!-- Navigationsleiste Mitte -->
-	<ul class="navbar-form navbar-center">
-		<li><h:link outcome="meinProfil" value="MeinProfil"
-				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
-	</ul>
 	
 	<!-- Navigationsleiste rechts -->
 	<ul class="nav navbar-nav navbar-right">
@@ -49,8 +44,10 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				value="Register" rendered="#{sessionService.isNotLoggedIn()}" /></li>
 		<li><h:link outcome="home" value="Home"
 				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
-		<li><h:form><h:commandLink action="#{baseView.logout}" value="Logout" 
-				rendered="#{sessionService.isLoggedIn()}"></h:commandLink></h:form></li>
+		<li><h:link outcome="meinProfil" value="MeinProfil"
+				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
+		<li><h:link action="#{baseView.logout}" value="Logout" 
+				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
 	</ul>
 </div>
 <!-- /.container-fluid --> </nav>
