@@ -10,7 +10,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<ui:composition template="base.xhtml">
 		<ui:define name="content">
 			<f:metadata>
-				<f:viewParam name="veranstaltungsname" value="#{veranstaltungDetailsView.veranstaltungsname}"></f:viewParam>
+				<f:viewParam name="id" value="#{veranstaltungDetailsView.id}"></f:viewParam>
 				<f:event listener="#{veranstaltungDetailsView.init}" type="preRenderView"></f:event>
 			</f:metadata>
 			<h:form id="details-form">

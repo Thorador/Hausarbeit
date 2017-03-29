@@ -29,7 +29,7 @@ import serviceInterface.IUserService;
 @ApplicationScoped
 public class UserService implements IUserService {
 
-	List<User> users;
+
 	
 
 
@@ -54,16 +54,7 @@ public class UserService implements IUserService {
 	
 	public UserService()
 	{
-		users = new ArrayList<>();
 		
-		User user = new User();
-		user.setBenutzername("admin");
-		user.setPasswort(String.valueOf("nimda".hashCode()));
-		user.setManager(true);
-		user.setGeschlecht("männlich");
-		user.setVorname("r");
-		user.setNachname("h");
-
 
 
 	}
@@ -83,8 +74,6 @@ public class UserService implements IUserService {
 		if (passwort.equals(passwortbestaetigen))
 		{
 			User user = new User();
-			user.setId(users.get(users.size() - 1).getId() + 1);
-				// ID wird hochgez�hlt (+1 als die letzte ID der User-Liste)
 			user.setBenutzername(username);
 			user.setPasswort(String.valueOf(passwort.hashCode()));
 			user.setVorname(vorname);
@@ -116,10 +105,6 @@ public class UserService implements IUserService {
 		return false;
 	}
 
-	@Override
-	public List<User> getUsers() {
-		return users;
-	}
 
 	@Override
 	public User getUserByName(String username) {
@@ -135,13 +120,5 @@ public class UserService implements IUserService {
 		}	
 	}
 	
-	@Override
-	public User getUserByID(int id) {
-		for (User user : users) {
-			if (user.getId() == id)
-				return user;
-		}
-		return null;
-	}
 
 }

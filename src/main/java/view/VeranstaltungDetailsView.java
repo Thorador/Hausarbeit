@@ -24,8 +24,7 @@ public class VeranstaltungDetailsView {
 	private String veranstaltungsname;
 	private String beschreibung;
 	private Date datum;
-	private int maxTickets;
-	private int bereitsReservierteTickets;
+	private int freieTickets;
 	private String anzTicketsReservierung;
 	private String ort;
 	private double preis;
@@ -42,14 +41,21 @@ public class VeranstaltungDetailsView {
 	
 	public void init()
 	{
-		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungByName(getVeranstaltungsname()).get();
+		if (veranstaltungService.getVeranstaltungById(getId()) != null)
+		{
+		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(getId());
+		this.setVeranstaltungsname(veranstaltung.getVeranstaltungsname());
 		this.setBeschreibung(veranstaltung.getBeschreibung());
+		this.setDatum(veranstaltung.getDatum());
+		this.setOrt(veranstaltung.getOrt());
+		this.setFreieTickets(veranstaltung.getMaxTickets()-veranstaltung.getBereitsReservierteTickets());
+		}
 	}
 
 	public String reservieren() {
-		reservierungService.createReservierung(sessionService.getActiveUser().getId(), 
-											   veranstaltungService.getVeranstaltungByName(getVeranstaltungsname()).get().getId(),
-											   Integer.valueOf(getAnzTicketsReservierung()));
+//		reservierungService.createReservierung(sessionService.getActiveUser().getId(), 
+//											   veranstaltungService.getVeranstaltungById(getId()),
+//											   Integer.valueOf(getAnzTicketsReservierung()));
 		return "VeranstaltungDetails.jsf";
 	}
 	
@@ -82,18 +88,6 @@ public class VeranstaltungDetailsView {
 	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
-	public int getMaxTickets() {
-		return maxTickets;
-	}
-	public void setMaxTickets(int maxTickets) {
-		this.maxTickets = maxTickets;
-	}
-	public int getBereitsReservierteTickets() {
-		return bereitsReservierteTickets;
-	}
-	public void setBereitsReservierteTickets(int bereitsReservierteTickets) {
-		this.bereitsReservierteTickets = bereitsReservierteTickets;
-	}
 	public String getAnzTicketsReservierung() {
 		return anzTicketsReservierung;
 	}
@@ -117,6 +111,13 @@ public class VeranstaltungDetailsView {
 	}
 	public void setVeroeffentlicht(boolean veroeffentlicht) {
 		this.veroeffentlicht = veroeffentlicht;
+	}
+	public int getFreieTickets() {
+		return freieTickets;
+	}
+
+	public void setFreieTickets(int freieTickets) {
+		this.freieTickets = freieTickets;
 	}
 
 }

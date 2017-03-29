@@ -16,6 +16,6 @@ public interface IVeranstaltungService {
 											 double preis);
 	public void addVeranstaltung(Veranstaltung veranstaltung);
 	public List<Veranstaltung> getVeranstaltungen();
-	public Optional<Veranstaltung> getVeranstaltungByName(String veranstaltungsname);
+	public Veranstaltung getVeranstaltungById(int Id);
 
 }

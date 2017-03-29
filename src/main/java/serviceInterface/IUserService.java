@@ -1,8 +1,6 @@
 package serviceInterface;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 import model.User;
 
@@ -12,7 +10,5 @@ public interface IUserService {
 			   			   String rolle, String geschlecht, String strasse, String ort, int	  plz);
 	public void addUser(User user);
 	public boolean benutzernameVergeben(String benutzername);
-	public List<User> getUsers();
 	public User getUserByName(String username);
-	public User getUserByID(int id);
 }
