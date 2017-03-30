@@ -62,8 +62,7 @@ public class RegisterView implements java.io.Serializable{
 		}
 		else
 		{// Passw�rter stimmen nich �berein -> Ausgabe Fehlermeldung
-			setPasswort("Passw�rter stimmen nicht �berein.");
-			setPasswortbestaetigen("Passw�rter stimmen nicht �berein.");
+			
 		}
 		return "register.jsf";
 	}
