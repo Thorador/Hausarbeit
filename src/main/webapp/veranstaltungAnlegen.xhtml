@@ -8,6 +8,10 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <body>
 	<ui:composition template="base.xhtml">
 		<ui:define name="content">
+			<f:metadata>
+				<f:viewParam name="id" value="#{veranstaltungAnlegenView.id}"></f:viewParam>
+				<f:event listener="#{veranstaltungAnlegenView.init}" type="preRenderView"></f:event>
+			</f:metadata>
 			<h:form>
 			<div class="input-group">
   				<span class="input-group-addon" >Veranstaltungsname</span>
@@ -36,7 +40,8 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				
 			</div>
 			<div class="btn-group" style="margin-left:25%; width:50%">
-				<h:commandButton action="#{veranstaltungAnlegenView.create}" value="Anlegen" class="btn btn-default"></h:commandButton>
+				<h:commandButton action="#{veranstaltungAnlegenView.create}" value="Anlegen" class="btn btn-default" rendered="#{veranstaltungAnlegenView.anlegen}"></h:commandButton>
+				<h:commandButton action="#{veranstaltungAnlegenView.safe}" value="Speichern" class="btn btn-default" rendered="#{not veranstaltungAnlegenView.anlegen}"></h:commandButton>				
 				<h:commandButton action="#{veranstaltungAnlegenView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default"></h:commandButton>
 			</div>
 			</h:form>

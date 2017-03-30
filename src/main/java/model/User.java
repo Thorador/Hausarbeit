@@ -3,6 +3,7 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,9 +24,9 @@ public class User {
 	private String nachname;
 	private boolean manager;
 	private String geschlecht;
-	@OneToMany(mappedBy="manager")
+	@OneToMany(mappedBy="manager", cascade=CascadeType.ALL)
 	private List<Veranstaltung> veranstaltungen;
-	@OneToMany(mappedBy="manager")
+	@OneToMany(mappedBy="manager", cascade=CascadeType.ALL)
 	private List<Reservierung> reservierungen;
 	
 	public List<Veranstaltung> getVeranstaltungen() {

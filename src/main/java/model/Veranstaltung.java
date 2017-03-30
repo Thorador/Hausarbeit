@@ -3,6 +3,7 @@ package model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Veranstaltung {
 	@ManyToOne
 	@JoinColumn(name="managerId")
 	public User manager;
-	@OneToMany(mappedBy="veranstaltung")
+	@OneToMany(mappedBy="veranstaltung", cascade=CascadeType.ALL)
 	public List<Reservierung> reservierungen;
 
 	

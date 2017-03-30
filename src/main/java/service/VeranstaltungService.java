@@ -105,6 +105,13 @@ public class VeranstaltungService implements IVeranstaltungService {
 		List<Veranstaltung> veranstaltungen = veranstaltungenQuery.getResultList();
 		return veranstaltungen;
 	}
+	
+	public List<Veranstaltung> getMeineVeranstaltungen() {
+		TypedQuery<Veranstaltung> veranstaltungenQuery = entityManager.createQuery("Select v From Veranstaltung v Where v.manager=:user", Veranstaltung.class);
+		veranstaltungenQuery.setParameter("user", sessionService.getActiveUser());
+		List<Veranstaltung> veranstaltungen = veranstaltungenQuery.getResultList();
+		return veranstaltungen;
+	}
 
 	@Override
 	public Veranstaltung getVeranstaltungById(int id) {

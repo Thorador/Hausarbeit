@@ -7,26 +7,60 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.Veranstaltung;
+import service.SessionService;
 import service.VeranstaltungService;
 
 @Named
 @RequestScoped
 public class VeranstaltungAnlegenView {
 
+	private int id;
 	private String veranstaltungsname;
 	private String beschreibung;
 	private Date datum;
 	private String ort;
-	private String zeit;
 	private int anzahlTickets;
 	private boolean veroeffentlicht;
+	private boolean anlegen;
 	
 	@Inject
-	VeranstaltungService veranstaltungService;
+	private SessionService sessionService;
 	
+	@Inject
+	private VeranstaltungService veranstaltungService;
+	
+	public void init()
+	{
+		this.setAnlegen(true);
+		if (getId() != -1)
+		{
+			Veranstaltung veranstaltung= veranstaltungService.getVeranstaltungById(getId());
+			this.setVeranstaltungsname(veranstaltung.getVeranstaltungsname());
+			this.setBeschreibung(veranstaltung.getBeschreibung());
+			this.setDatum(veranstaltung.getDatum());
+			this.setOrt(veranstaltung.getOrt());
+			this.setAnzahlTickets(veranstaltung.getMaxTickets());
+			this.setVeroeffentlicht(false);
+			this.setAnlegen(false);
+		}
+	}
+	
+	public String safe()
+	{
+		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(getId());
+		veranstaltung.setVeranstaltungsname(this.getVeranstaltungsname());
+		veranstaltung.setBeschreibung(this.getBeschreibung());
+		veranstaltung.setDatum(this.getDatum());
+		veranstaltung.setOrt(this.getOrt());
+		veranstaltung.setMaxTickets(this.getAnzahlTickets());
+		veranstaltung.setVeroeffentlicht(this.isVeroeffentlicht());
+		veranstaltungService.updateVeranstaltung();
+		return "meineVeranstaltungen.jsf";
+	}
 	public String create()
 	{
 		Veranstaltung veranstaltung = new Veranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),isVeroeffentlicht());
+		veranstaltung.setManager(sessionService.getActiveUser());
 		veranstaltungService.addVeranstaltung(veranstaltung);
 		return "home.jsf";
 	}
@@ -73,11 +107,16 @@ public class VeranstaltungAnlegenView {
 		this.veroeffentlicht = veroeffentlicht;
 	}
 
-	public String getZeit() {
-		return zeit;
+	public int getId() {
+		return id;
 	}
-
-	public void setZeit(String zeit) {
-		this.zeit = zeit;
+	public void setId(int id) {
+		this.id = id;
+	}
+	public boolean isAnlegen() {
+		return anlegen;
+	}
+	public void setAnlegen(boolean anlegen) {
+		this.anlegen = anlegen;
 	}
 }
