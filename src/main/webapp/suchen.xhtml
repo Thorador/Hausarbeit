@@ -9,6 +9,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<ui:composition template="base.xhtml">
 		<ui:define name="content">
 			<div class="row">
+				<h:form>
 				<div class="col-md-3">
 					<span>Veranstaltungsname</span>
 					<h:inputText value="#{suchenView.veranstaltungsname}" ></h:inputText>
@@ -27,6 +28,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 					<h:commandButton action="#{suchenView.suchen}" value="Suchen" ></h:commandButton>
 					<h:commandButton action="#{suchenView.cancel}" immediate="true" value="Abbrechen" ></h:commandButton>
 				</div>
+				</h:form>
 			</div>
 			<h:dataTable value="#{suchenView.suchErgebnisse}" var="v" class="table table-striped" rendered="#{not empty suchenView.suchErgebnisse}">
   				<h:column>

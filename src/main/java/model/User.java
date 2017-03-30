@@ -26,7 +26,7 @@ public class User {
 	private String geschlecht;
 	@OneToMany(mappedBy="manager", cascade=CascadeType.ALL)
 	private List<Veranstaltung> veranstaltungen;
-	@OneToMany(mappedBy="manager", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
 	private List<Reservierung> reservierungen;
 	
 	public List<Veranstaltung> getVeranstaltungen() {

@@ -9,7 +9,10 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<ui:composition template="base.xhtml">
 		<ui:define name="content">
 			<div class="input-group" style="margin-left:25%; width:50%">
-				<h:commandButton action="#{meineVeranstaltungenView.reservierungsuebersicht}" immediate="true" class="btn btn-default" value="Reservierungsübersicht"></h:commandButton>
+				<h:form>
+					<h:commandButton action="#{meineVeranstaltungenView.reservierungsuebersicht}" immediate="true" class="btn btn-default" value="Reservierungsübersicht"></h:commandButton>
+					<h:commandButton action="#{meineVeranstaltungenView.back}" immediate="true" class="btn btn-default" value="Zurück zur Startseite"></h:commandButton>
+				</h:form>
 			</div>
 			<h:dataTable value="#{veranstaltungService.getMeineVeranstaltungen()}" var="v" class="table table-striped">
   				<h:column>
@@ -38,7 +41,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   				</h:column>    				
 			</h:dataTable>
 			<div class="input-group" style="margin-left:25%; width:50%">
-				<h:commandButton action="#{meineVeranstaltungenView.back}" immediate="true" class="btn btn-default" value="Zurück zur Startseite"></h:commandButton>
+				
 			</div>
 		</ui:define>
 	</ui:composition>

@@ -18,8 +18,8 @@ public class Reservierung {
 	@JoinColumn(name="veranstaltungId")
 	private Veranstaltung veranstaltung;
 	@ManyToOne
-	@JoinColumn(name="managerId")
-	private User manager;
+	@JoinColumn(name="userId")
+	private User user;
 	private int anzTickets;
 	
 	
@@ -37,11 +37,12 @@ public class Reservierung {
 	public void setVeranstaltung(Veranstaltung veranstaltung) {
 		this.veranstaltung = veranstaltung;
 	}
-	public User getManager() {
-		return manager;
+
+	public User getUser() {
+		return user;
 	}
-	public void setManager(User manager) {
-		this.manager = manager;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public int getAnzTickets() {
 		return anzTickets;

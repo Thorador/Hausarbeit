@@ -32,7 +32,7 @@ public class VeranstaltungAnlegenView {
 	public void init()
 	{
 		this.setAnlegen(true);
-		if (getId() != -1)
+		if (getId() != 0)
 		{
 			Veranstaltung veranstaltung= veranstaltungService.getVeranstaltungById(getId());
 			this.setVeranstaltungsname(veranstaltung.getVeranstaltungsname());

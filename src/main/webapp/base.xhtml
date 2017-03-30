@@ -47,7 +47,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<li><h:link outcome="home" value="Home"
 				rendered="#{sessionService.isLoggedIn()}"></h:link></li>
 		<li><h:link outcome="veranstaltungAnlegen" value="Veranstaltung anlegen"
-				rendered="#{sessionService.isManager()}"><f:param name="id" value="-1"></f:param> </h:link></li>
+				rendered="#{sessionService.isManager()}"><f:param name="id" value="0"></f:param> </h:link></li>
 		<li><h:link outcome="meineVeranstaltungen" value="Meine Veranstaltungen"
 				rendered="#{sessionService.isManager()}"></h:link></li>				
 		<li><h:link outcome="meinProfil" value="MeinProfil"

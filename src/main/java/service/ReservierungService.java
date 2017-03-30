@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import model.Reservierung;
 import model.Veranstaltung;
@@ -44,7 +45,9 @@ public class ReservierungService implements IReservierungService {
 
 	@Override
 	public List<Reservierung> getReservierungen() {
-		return reservierungen;
+		TypedQuery<Reservierung> reservierungQuery = entityManager.createQuery("Select r From Reservierung r, Veranstaltung v where r.veranstaltung=v And v.manager=:manager", Reservierung.class);
+		reservierungQuery.setParameter("manager", sessionService.getActiveUser());
+		return reservierungQuery.getResultList();
 	}
 
 	public void reservieren(int veranstaltungsId, int reservierteTickets) {
@@ -54,7 +57,7 @@ public class ReservierungService implements IReservierungService {
 		reservierung.setVeranstaltung(veranstaltung);
 		veranstaltungService.updateVeranstaltung();
 		reservierung.setAnzTickets(reservierteTickets);
-		reservierung.setManager(sessionService.getActiveUser());
+		reservierung.setUser(sessionService.getActiveUser());
 		this.addReservierung(reservierung);		
 	}
 
