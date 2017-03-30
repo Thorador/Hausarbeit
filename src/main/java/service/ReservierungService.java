@@ -88,6 +88,7 @@ public class ReservierungService implements IReservierungService {
 		reservierung.setVeranstaltungID(veranstaltungsId);
 		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(veranstaltungsId);
 		veranstaltung.setBereitsReservierteTickets(veranstaltung.getBereitsReservierteTickets() + reservierteTickets);
+		veranstaltungService.updateVeranstaltung();
 		reservierung.setAnzTickets(reservierteTickets);
 		reservierung.setUserID(sessionService.getActiveUser().getId());
 		reservierung.setReservierungscode((int)(Math.random() * 10000000));

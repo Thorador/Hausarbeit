@@ -91,7 +91,12 @@ public class VeranstaltungService implements IVeranstaltungService {
 		this.entityManager.getTransaction().begin();
 		this.entityManager.persist(veranstaltung);
 		this.entityManager.getTransaction().commit();
-				
+	}
+	
+	public void updateVeranstaltung()
+	{
+		this.entityManager.getTransaction().begin();;
+		this.entityManager.getTransaction().commit();
 	}
 
 	@Override
