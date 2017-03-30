@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
+Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<body>
+	<ui:composition template="base.xhtml">
+		<ui:define name="content">
+			<div class="input-group" style="margin-left:25%; width:50%">
+				<h:commandButton action="#{meineVeranstaltungenView.reservierungsuebersicht}" immediate="true" class="btn btn-default" value="Reservierungsübersicht"></h:commandButton>
+			</div>
+			<h:dataTable value="#{veranstaltungService.getVeranstaltungen()}" var="v" class="table table-striped">
+  				<h:column>
+  					<f:facet name="header">ID</f:facet>
+  					#{v.id}
+  				</h:column>
+  				<h:column>
+  					<f:facet name="header">Veranstaltungsname</f:facet>
+  					#{v.veranstaltungsname}
+  				</h:column>
+  				<h:column>
+  					<f:facet name="header">Beschreibung</f:facet>
+  					#{v.beschreibung}
+  				</h:column>
+  				<h:column>
+  					<f:facet name="header">Veranstaltungsbeginn</f:facet>
+  					<h:outputText value="#{v.datum}">
+  						<f:convertDateTime type="date" pattern="HH:mm dd.MM.yyyy" timeZone="GMT+2"></f:convertDateTime>
+  					</h:outputText>
+  				</h:column>
+  				 <h:column>
+  					<f:facet name="header">Details</f:facet>
+  					<h:link value="Details anzeigen" outcome="veranstaltungDetails">
+  						<f:param name="id" value="#{v.id}"></f:param>
+  					</h:link>
+  				</h:column>    				
+			</h:dataTable>
+			<div class="input-group" style="margin-left:25%; width:50%">
+				<h:commandButton action="#{meineVeranstaltungenView.back}" immediate="true" class="btn btn-default" value="Zurück zur Startseite"></h:commandButton>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
