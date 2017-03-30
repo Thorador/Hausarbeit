@@ -8,7 +8,27 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <body>
 	<ui:composition template="base.xhtml">
 		<ui:define name="content">
-			<h:dataTable value="#{veranstaltungService.getVeranstaltungen()}" var="v" class="table table-striped">
+			<div class="row">
+				<div class="col-md-3">
+					<span>Veranstaltungsname</span>
+					<h:inputText value="#{suchenView.veranstaltungsname}" ></h:inputText>
+				</div>
+				<div class="col-md-3">
+					<span>Von</span>
+					<h:inputText id="von" value="#{suchenView.von}" type="date"><f:convertDateTime pattern="dd.MM.yyyy"/></h:inputText>
+					<h:message for = "von" style = "color:red"  />
+				</div>
+				<div class="col-md-3">
+					<span>Bis</span>
+					<h:inputText id="bis" value="#{suchenView.bis}" type="date"><f:convertDateTime pattern="dd.MM.yyyy"/></h:inputText>
+					<h:message for = "bis" style = "color:red"  />
+				</div>
+				<div class="col-md-3">
+					<h:commandButton action="#{suchenView.suchen}" value="Suchen" ></h:commandButton>
+					<h:commandButton action="#{suchenView.cancel}" immediate="true" value="Abbrechen" ></h:commandButton>
+				</div>
+			</div>
+			<h:dataTable value="#{suchenView.suchErgebnisse}" var="v" class="table table-striped" rendered="#{not empty suchenView.suchErgebnisse}">
   				<h:column>
   					<f:facet name="header">ID</f:facet>
   					#{v.id}

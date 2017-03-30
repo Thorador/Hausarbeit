@@ -25,7 +25,7 @@ public class VeranstaltungDetailsView {
 	private String beschreibung;
 	private Date datum;
 	private int freieTickets;
-	private String anzTicketsReservierung;
+	private int anzTicketsReservierung;
 	private String ort;
 	private double preis;
 	private boolean veroeffentlicht;
@@ -36,8 +36,7 @@ public class VeranstaltungDetailsView {
 	@Inject
 	ReservierungService reservierungService;
 	
-	@Inject
-	SessionService sessionService;
+
 	
 	public void init()
 	{
@@ -53,9 +52,7 @@ public class VeranstaltungDetailsView {
 	}
 
 	public String reservieren() {
-//		reservierungService.createReservierung(sessionService.getActiveUser().getId(), 
-//											   veranstaltungService.getVeranstaltungById(getId()),
-//											   Integer.valueOf(getAnzTicketsReservierung()));
+		reservierungService.reservieren(getId(),getAnzTicketsReservierung());
 		return "VeranstaltungDetails.jsf";
 	}
 	
@@ -88,10 +85,10 @@ public class VeranstaltungDetailsView {
 	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
-	public String getAnzTicketsReservierung() {
+	public int getAnzTicketsReservierung() {
 		return anzTicketsReservierung;
 	}
-	public void setAnzTicketsReservierung(String anzTicketsReservierung) {
+	public void setAnzTicketsReservierung(int anzTicketsReservierung) {
 		this.anzTicketsReservierung = anzTicketsReservierung;
 	}
 	public String getOrt() {

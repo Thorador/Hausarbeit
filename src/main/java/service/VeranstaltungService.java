@@ -96,7 +96,7 @@ public class VeranstaltungService implements IVeranstaltungService {
 
 	@Override
 	public List<Veranstaltung> getVeranstaltungen() {
-		TypedQuery<Veranstaltung> veranstaltungenQuery = entityManager.createQuery("Select v From Veranstaltung v", Veranstaltung.class);
+		TypedQuery<Veranstaltung> veranstaltungenQuery = entityManager.createQuery("Select v From Veranstaltung v Where v.veroeffentlicht=1", Veranstaltung.class);
 		List<Veranstaltung> veranstaltungen = veranstaltungenQuery.getResultList();
 		return veranstaltungen;
 	}

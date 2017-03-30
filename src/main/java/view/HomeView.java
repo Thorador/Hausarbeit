@@ -11,7 +11,7 @@ import service.VeranstaltungService;
 
 @Named
 @RequestScoped
-public class homeView {
+public class HomeView {
 
 		public String detailsAnzeigen()
 		{

@@ -23,13 +23,8 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   				<h:outputText value="#{veranstaltungDetailsView.beschreibung}" class="form-control" />
 			</div>
 			<div>
-				<span>Datum</span>
- 			  	<h:outputText id="veranstaltungsdatum" value="#{veranstaltungDetailsView.datum}" class="form-control"></h:outputText>			
-			</div>
-			<div>
-  				<span>Zeit</span>
-  				
-  				<h:outputText type="text" class="form-control" placeholder="Beginn der Veranstaltung"/>
+				<span>Veranstaltungsbeginn</span>
+ 			  	<h:outputText id="veranstaltungsdatum" value="#{veranstaltungDetailsView.datum}" class="form-control"><f:convertDateTime type="date" pattern="HH:mm dd.MM.yyyy" timeZone="GMT+2"></f:convertDateTime></h:outputText>			
 			</div>
 			<div>
   				<span>Ort</span>
@@ -37,7 +32,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			</div>
 			<div>
   				<span>Anzahl der verfügbaren Tickets</span>
-  				<h:outputText value="#{veranstaltungDetailsView.maxTickets}" class="form-control"/>
+  				<h:outputText value="#{veranstaltungDetailsView.freieTickets}" class="form-control"/>
 			</div>
 			<div class="btn-group">
 				<h:form rendered="#{sessionService.isLoggedIn()}"><span>Zu Reservierende Tickets</span></h:form>

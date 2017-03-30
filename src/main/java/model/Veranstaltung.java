@@ -39,7 +39,7 @@ public class Veranstaltung {
 		this.veroeffentlicht=veroeffentlicht;
 	}
 	public Veranstaltung() {
-		// TODO Auto-generated constructor stub
+
 	}
 	public int getId() {
 		return id;

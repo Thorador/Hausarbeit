@@ -17,6 +17,7 @@ public class VeranstaltungAnlegenView {
 	private String beschreibung;
 	private Date datum;
 	private String ort;
+	private String zeit;
 	private int anzahlTickets;
 	private boolean veroeffentlicht;
 	
@@ -70,5 +71,13 @@ public class VeranstaltungAnlegenView {
 	}
 	public void setVeroeffentlicht(boolean veroeffentlicht) {
 		this.veroeffentlicht = veroeffentlicht;
+	}
+
+	public String getZeit() {
+		return zeit;
+	}
+
+	public void setZeit(String zeit) {
+		this.zeit = zeit;
 	}
 }

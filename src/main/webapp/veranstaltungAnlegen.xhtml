@@ -18,14 +18,10 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   				<h:inputText value="#{veranstaltungAnlegenView.beschreibung}" type="text" class="form-control" placeholder="Beschreibung der Veranstaltung" required="true"/>
 			</div>
 			<div class="input-group">
-				<span class="input-group-addon" >Datum</span>
- 			  	<h:inputText id="veranstaltungsdatum" value="#{veranstaltungAnlegenView.datum}" class="form-control" placeholder="DD.MM.YYYY"><f:convertDateTime pattern="dd.mm.yyyy"></f:convertDateTime></h:inputText>			
-			</div>
+				<span class="input-group-addon" >Veranstaltungsbeginn Uhrzeit Datum</span>
+ 			  	<h:inputText id="veranstaltungsdatum" value="#{veranstaltungAnlegenView.datum}" class="form-control" placeholder="HH:mm dd.MM.yyyy"><f:convertDateTime pattern="HH:mm dd.MM.yyyy" timeZone="GMT+2"></f:convertDateTime></h:inputText>			
+
 				<h:message for = "veranstaltungsdatum" style = "color:red"  />	
-			<div class="input-group">
-  				<span class="input-group-addon" >Zeit</span>
-  				
-  				<input type="text" class="form-control" placeholder="Beginn der Veranstaltung" required="true"/>
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" >Ort</span>
