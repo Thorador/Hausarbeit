@@ -34,7 +34,7 @@ public class VeranstaltungAnlegenView implements Serializable {
 	public void init()
 	{
 		this.setAnlegen(true);
-		if (getId() != 0)
+		if (getId() != -1)
 		{
 			Veranstaltung veranstaltung= veranstaltungService.getVeranstaltungById(getId());
 			this.setVeranstaltungsname(veranstaltung.getVeranstaltungsname());
