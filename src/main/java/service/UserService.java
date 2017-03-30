@@ -23,10 +23,6 @@ import serviceInterface.IUserService;
 @ApplicationScoped
 public class UserService implements IUserService {
 
-
-	
-
-
 	@Inject
 	private EntityManager entityManager;
 
@@ -49,37 +45,8 @@ public class UserService implements IUserService {
 	public UserService()
 	{
 		
-
-
 	}
 	
-	@Override
-	public User createUser(String username,
-						   String passwort,
-						   String passwortbestaetigen,
-			  			   String vorname,
-			  			   String nachname,
-			  			   Date   geburtsdatum,
-			  			   String rolle,
-			  			   String geschlecht,
-			  			   String strasse,
-			  			   String ort,
-			  			   int	  plz) {
-		if (passwort.equals(passwortbestaetigen))
-		{
-			User user = new User();
-			user.setBenutzername(username);
-			user.setPasswort(String.valueOf(passwort.hashCode()));
-			user.setVorname(vorname);
-			user.setNachname(nachname);
-			user.setManager(true);
-			user.setGeschlecht(geschlecht);
-			return user;
-		} else
-		{
-			return null;
-		}		
-	}
 	
 	@Transactional
 	@Override
