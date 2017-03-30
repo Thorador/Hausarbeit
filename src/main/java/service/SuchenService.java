@@ -18,7 +18,7 @@ public class SuchenService {
 	
 	public List<Veranstaltung> suchen(String veranstaltungsname, Date von, Date bis)
 	{
-		TypedQuery<Veranstaltung> veranstaltungenQuery = entityManager.createNamedQuery("Select v From Veranstaltung v Where v.veranstaltungsname Like :veranstaltungsname And v.datum Between :von And :bis", Veranstaltung.class );
+		TypedQuery<Veranstaltung> veranstaltungenQuery = entityManager.createQuery("Select v From Veranstaltung v Where v.veranstaltungsname Like :veranstaltungsname And v.datum Between :von And :bis", Veranstaltung.class );
 		veranstaltungenQuery.setParameter("veranstaltungsname", "%" + veranstaltungsname +"%");
 		veranstaltungenQuery.setParameter("von", von);
 		veranstaltungenQuery.setParameter("bis", bis);

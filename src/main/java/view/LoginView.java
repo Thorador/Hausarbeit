@@ -20,7 +20,6 @@ public class LoginView implements Serializable {
 	
 	public String login()
 	{
-		System.out.println(getBenutzername() + " " + getPasswort());
 		return sessionService.login(getBenutzername(), getPasswort()) ? "home.jsf" : "login.jsf";			
 	}
 	public String cancel()

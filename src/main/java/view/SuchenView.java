@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import model.Veranstaltung;
 import service.SuchenService;
 
+@Named
 @RequestScoped
 public class SuchenView {
 	

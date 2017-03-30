@@ -23,7 +23,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon" >Veranstaltungsbeginn Uhrzeit Datum</span>
- 			  	<h:inputText id="veranstaltungsdatum" value="#{veranstaltungAnlegenView.datum}" class="form-control" placeholder="HH:mm dd.MM.yyyy"><f:convertDateTime pattern="HH:mm dd.MM.yyyy" timeZone="GMT+2"></f:convertDateTime></h:inputText>			
+ 			  	<h:inputText id="veranstaltungsdatum" value="#{veranstaltungAnlegenView.datum}" type="date" class="form-control" placeholder="HH:mm dd.MM.yyyy"><f:convertDateTime pattern="HH:mm dd.MM.yyyy" timeZone="GMT+2"></f:convertDateTime></h:inputText>			
 
 				<h:message for = "veranstaltungsdatum" style = "color:red"  />	
 			</div>
@@ -40,8 +40,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				
 			</div>
 			<div class="btn-group" style="margin-left:25%; width:50%">
-				<h:commandButton action="#{veranstaltungAnlegenView.create}" value="Anlegen" class="btn btn-default" rendered="#{veranstaltungAnlegenView.anlegen}"></h:commandButton>
-				<h:commandButton action="#{veranstaltungAnlegenView.safe}" value="Speichern" class="btn btn-default" rendered="#{not veranstaltungAnlegenView.anlegen}"></h:commandButton>				
+				<h:commandButton action="#{veranstaltungAnlegenView.safe}" value="Speichern" class="btn btn-default"></h:commandButton>				
 				<h:commandButton action="#{veranstaltungAnlegenView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default"></h:commandButton>
 			</div>
 			</h:form>

@@ -1,8 +1,10 @@
 package view;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.enterprise.context.RequestScoped;
+
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,8 +13,8 @@ import service.SessionService;
 import service.VeranstaltungService;
 
 @Named
-@RequestScoped
-public class VeranstaltungAnlegenView {
+@SessionScoped
+public class VeranstaltungAnlegenView implements Serializable {
 
 	private int id;
 	private String veranstaltungsname;
@@ -47,15 +49,23 @@ public class VeranstaltungAnlegenView {
 	
 	public String safe()
 	{
-		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(getId());
-		veranstaltung.setVeranstaltungsname(this.getVeranstaltungsname());
-		veranstaltung.setBeschreibung(this.getBeschreibung());
-		veranstaltung.setDatum(this.getDatum());
-		veranstaltung.setOrt(this.getOrt());
-		veranstaltung.setMaxTickets(this.getAnzahlTickets());
-		veranstaltung.setVeroeffentlicht(this.isVeroeffentlicht());
-		veranstaltungService.updateVeranstaltung();
-		return "meineVeranstaltungen.jsf";
+		if (isAnlegen())
+		{
+			Veranstaltung veranstaltung = new Veranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),isVeroeffentlicht());
+			veranstaltung.setManager(sessionService.getActiveUser());
+			veranstaltungService.addVeranstaltung(veranstaltung);
+			return "home.jsf";		
+		}else{
+			Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(getId());
+			veranstaltung.setVeranstaltungsname(this.getVeranstaltungsname());
+			veranstaltung.setBeschreibung(this.getBeschreibung());
+			veranstaltung.setDatum(this.getDatum());
+			veranstaltung.setOrt(this.getOrt());
+			veranstaltung.setMaxTickets(this.getAnzahlTickets());
+			veranstaltung.setVeroeffentlicht(this.isVeroeffentlicht());
+			veranstaltungService.updateVeranstaltung();
+			return "meineVeranstaltungen.jsf";
+		}
 	}
 	public String create()
 	{
