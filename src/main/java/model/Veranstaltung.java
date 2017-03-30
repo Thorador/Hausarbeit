@@ -1,10 +1,15 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,8 +26,25 @@ public class Veranstaltung {
 	private String ort;
 	private double preis;
 	private boolean veroeffentlicht;
+	@ManyToOne
+	@JoinColumn(name="managerId")
+	public User manager;
+	@OneToMany(mappedBy="veranstaltung")
+	public List<Reservierung> reservierungen;
 
 	
+	public List<Reservierung> getReservierungen() {
+		return reservierungen;
+	}
+	public void setReservierungen(List<Reservierung> reservierungen) {
+		this.reservierungen = reservierungen;
+	}
+	public User getManager() {
+		return manager;
+	}
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
 	public boolean isVeroeffentlicht() {
 		return veroeffentlicht;
 	}

@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,10 +14,13 @@ import javax.persistence.Table;
 public class Reservierung {
 
 	@Id @GeneratedValue
-	private int id;
 	private int reservierungscode;
-	private int userID;
-	private int veranstaltungID;
+	@ManyToOne
+	@JoinColumn(name="veranstaltungId")
+	private Veranstaltung veranstaltung;
+	@ManyToOne
+	@JoinColumn(name="managerId")
+	private User manager;
 	private int anzTickets;
 	
 	
@@ -26,20 +31,19 @@ public class Reservierung {
 		this.reservierungscode = reservierungscode;
 	}
 	
-	public int getUserID() {
-		return userID;
-	}
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
 	
-	public int getVeranstaltungID() {
-		return veranstaltungID;
+	public Veranstaltung getVeranstaltung() {
+		return veranstaltung;
 	}
-	public void setVeranstaltungID(int veranstaltungID) {
-		this.veranstaltungID = veranstaltungID;
+	public void setVeranstaltung(Veranstaltung veranstaltung) {
+		this.veranstaltung = veranstaltung;
 	}
-	
+	public User getManager() {
+		return manager;
+	}
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
 	public int getAnzTickets() {
 		return anzTickets;
 	}

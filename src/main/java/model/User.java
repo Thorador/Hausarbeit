@@ -1,10 +1,13 @@
 package model;
 
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +23,27 @@ public class User {
 	private String nachname;
 	private boolean manager;
 	private String geschlecht;
+	@OneToMany(mappedBy="manager")
+	private List<Veranstaltung> veranstaltungen;
+	@OneToMany(mappedBy="manager")
+	private List<Reservierung> reservierungen;
 	
+	public List<Veranstaltung> getVeranstaltungen() {
+		return veranstaltungen;
+	}
+
+	public void setVeranstaltungen(List<Veranstaltung> veranstaltungen) {
+		this.veranstaltungen = veranstaltungen;
+	}
+
+	public List<Reservierung> getReservierungen() {
+		return reservierungen;
+	}
+
+	public void setReservierungen(List<Reservierung> reservierungen) {
+		this.reservierungen = reservierungen;
+	}
+
 	public User()
 	{
 

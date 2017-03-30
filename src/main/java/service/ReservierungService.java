@@ -32,31 +32,7 @@ public class ReservierungService implements IReservierungService {
 	{		
 		
 	}
-	
-	
-	
-	//reservierungen.add();
 
-	@Override
-	public Reservierung createReservierung(int userID,
-										   int veranstaltungID,
-										   int anzTickets) {
-		Reservierung reservierung = new Reservierung();
-		int reservierungscode;
-		
-		do {
-			reservierungscode = ((int)(Math.random() * 10000000));
-		} while (reservierungscodeExist(reservierungscode) || reservierungscode < 1000000);
-		
-		reservierung.setReservierungscode(reservierungscode);
-		reservierung.setUserID(userID);
-		reservierung.setVeranstaltungID(veranstaltungID);
-		reservierung.setAnzTickets(anzTickets);
-		
-		return reservierung;
-		
-	}
-	
 	@Override
 	public void addReservierung(Reservierung reservierung) {
 		
@@ -71,27 +47,14 @@ public class ReservierungService implements IReservierungService {
 		return reservierungen;
 	}
 
-	@Override
-	public boolean reservierungscodeExist(int reservierungscode) {
-		boolean match = false;
-		for (Reservierung reservierung : reservierungen) {
-			if (reservierung.getReservierungscode() == reservierungscode)
-				match = true;
-		}
-		return match;
-	}
-
-
-
 	public void reservieren(int veranstaltungsId, int reservierteTickets) {
 		Reservierung reservierung = new Reservierung();
-		reservierung.setVeranstaltungID(veranstaltungsId);
 		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(veranstaltungsId);
 		veranstaltung.setBereitsReservierteTickets(veranstaltung.getBereitsReservierteTickets() + reservierteTickets);
+		reservierung.setVeranstaltung(veranstaltung);
 		veranstaltungService.updateVeranstaltung();
 		reservierung.setAnzTickets(reservierteTickets);
-		reservierung.setUserID(sessionService.getActiveUser().getId());
-		reservierung.setReservierungscode((int)(Math.random() * 10000000));
+		reservierung.setManager(sessionService.getActiveUser());
 		this.addReservierung(reservierung);		
 	}
 

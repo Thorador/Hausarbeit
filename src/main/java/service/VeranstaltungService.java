@@ -118,7 +118,7 @@ public class VeranstaltungService implements IVeranstaltungService {
 			return null;
 		} catch (NonUniqueResultException e)
 		{
-			//sollte nicht auftreten, da Id pk und eindeutig sein soll
+			//sollte nicht auftreten, da Id primary key ist und eindeutig sein soll
 			return null;
 		}
 	}
