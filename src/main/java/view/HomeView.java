@@ -15,7 +15,7 @@ public class HomeView {
 
 		public String detailsAnzeigen()
 		{
-			return "details.jsf";
+			return "veranstaltungsDetails.jsf";
 		}
 
 }
