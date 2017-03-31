@@ -60,17 +60,16 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 					<DIV class="col-md-2"><span class="input-group-addon" >Geschlecht</span></DIV>
   					<DIV class="col-md-7">
 						<h:selectOneMenu value="#{meinProfilView.geschlecht}" required="true">
-							<f:selectItem itemValue="männlich" itemLabel="Männlich"></f:selectItem>
-							<f:selectItem itemValue="weiblich" itemLabel="Weiblich"></f:selectItem>
-							<f:selectItem itemValue="apache-kampfhubschrauber" itemLabel="Apache-Kampfhubschrauber"></f:selectItem>
+							<f:selectItem itemValue="Männlich" itemLabel="Männlich"></f:selectItem>
+							<f:selectItem itemValue="Weiblich" itemLabel="Weiblich"></f:selectItem>
+							<f:selectItem itemValue="Apache-Kampfhubschrauber" itemLabel="Apache-Kampfhubschrauber"></f:selectItem>
 						</h:selectOneMenu>
 					</DIV>
 					<div class="col-md-3"></div>
 				</div>
 					
-				<h:commandButton action="#{meinProfilView.save}" immediate="true" class="btn btn-default" value="Speichern"></h:commandButton>
-				<h:commandButton action="#{meinProfilView.cancel}" immediate="true" class="btn btn-default" value="Abbrechen"></h:commandButton>
-				<h:commandButton action="#{meinProfilView.importBenutzer}" immediate="true" class="btn btn-default" value="Import"></h:commandButton>						
+				<h:commandButton action="#{meinProfilView.save}" class="btn btn-default" value="Speichern" rendered="#{sessionService.isLoggedIn()}"></h:commandButton>
+				<h:commandButton action="#{meinProfilView.cancel}" immediate="true" class="btn btn-default" value="Abbrechen"></h:commandButton>						
 			</h:form>
 		</ui:define>	
 	</ui:composition>		

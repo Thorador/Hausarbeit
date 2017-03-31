@@ -58,32 +58,7 @@ public class VeranstaltungService implements IVeranstaltungService {
 //		veranstaltung3.setVeranstaltungsname("Ryan Gosling stalken");
 //		addVeranstaltung(veranstaltung3);
 //	}
-	@Override
-	public Veranstaltung createVeranstaltung(String veranstaltungsname,
-											 String beschreibung,
-											 Date datum,
-											 int maxTickets,
-											 String ort,
-											 double preis) {
-		
-		if (sessionService != null && sessionService.isLoggedIn() && sessionService.isManager())
-		{
-			Veranstaltung veranstaltung = new Veranstaltung();
-			veranstaltung.setId(veranstaltungen.get(veranstaltungen.size() - 1).getId() + 1);
-				// Veranstaltungs-ID ist +1 als die letzte ID der Veranstaltungsliste
-			veranstaltung.setVeranstaltungsname(veranstaltungsname);
-			veranstaltung.setBeschreibung(beschreibung);
-			veranstaltung.setDatum(datum);
-			veranstaltung.setMaxTickets(maxTickets);
-			veranstaltung.setBereitsReservierteTickets(0);
-			veranstaltung.setOrt(ort);
-			veranstaltung.setPreis(preis);
-			
-			return veranstaltung;
-		}
-		return null;
-		
-	}
+
 	
 	@Override
 	public void addVeranstaltung(Veranstaltung veranstaltung) {
@@ -95,7 +70,7 @@ public class VeranstaltungService implements IVeranstaltungService {
 	
 	public void updateVeranstaltung()
 	{
-		this.entityManager.getTransaction().begin();;
+		this.entityManager.getTransaction().begin();
 		this.entityManager.getTransaction().commit();
 	}
 

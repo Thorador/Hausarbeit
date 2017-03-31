@@ -80,6 +80,22 @@ public class UserService implements IUserService {
 			return null;
 		}	
 	}
+	public User getUserById(int userId) {
+		try{
+		TypedQuery<User> userQuery = entityManager.createQuery("Select u From User u where u.id = :userId", User.class);
+		User user = (User) userQuery.setParameter("userId", userId).getSingleResult();
+		return user;
+		} catch (NoResultException e)
+		{
+			return null;
+		} catch (NonUniqueResultException e) {
+			return null;
+		}	
+	}
+	public void updateUser() {
+		this.entityManager.getTransaction().begin();
+		this.entityManager.getTransaction().commit();		
+	}
 	
 
 }

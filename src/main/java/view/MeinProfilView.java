@@ -1,19 +1,16 @@
 package view;
 
-import java.util.Date;
-import java.util.Optional;
+
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.User;
-import service.UserService;
 import service.SessionService;
+import service.UserService;
 
 @Named
 @SessionScoped
@@ -24,12 +21,7 @@ public class MeinProfilView implements java.io.Serializable{
 	private String passwortbestaetigen;
 	private String vorname;
 	private String nachname;
-	private Date geburtsdatum;
-	private String rolle;
 	private String geschlecht;
-	private String strasse;
-	private String ort;
-	private int plz;
 	
 	@Inject
 	private UserService userService;
@@ -42,8 +34,9 @@ public class MeinProfilView implements java.io.Serializable{
 		
 	}
 	
-	public String importBenutzer()
-	{// F�llen der Werte auf der Benutzeroberf�che
+	@PostConstruct
+	public void init()
+	{
 		if (sessionService != null && sessionService.isLoggedIn())
 		{
 			User user = sessionService.getActiveUser();
@@ -56,27 +49,32 @@ public class MeinProfilView implements java.io.Serializable{
 			setBenutzername("Kein Benutzer eingeloggt!");
 			setVorname("");
 			setNachname("");
-			setGeburtsdatum(null);
 			setGeschlecht("");
-			setStrasse("");
-			setOrt("");
-			setPlz(0);
 		}
-		return "meinProfil.jsf";
 	}
+
 	
 	public String save()
 	{
-		sessionService.getActiveUser().setVorname(getVorname());
-		sessionService.getActiveUser().setNachname(getNachname());
-		sessionService.getActiveUser().setGeschlecht(getGeschlecht());
-		
-		return "frontpage.jsf";
+		if (getPasswort().equals(getPasswortbestaetigen()))
+		{
+		User user = userService.getUserById(sessionService.getActiveUser().getId());
+		user.setPasswort(String.valueOf(getPasswort().hashCode()));
+		user.setVorname(getVorname());
+		user.setNachname(getNachname());
+		user.setGeschlecht(getGeschlecht());
+		userService.updateUser();
+		sessionService.setActiveUser(user);
+		return "home.jsf";
+		}else
+		{// Passw�rter stimmen nich �berein -> Ausgabe Fehlermeldung
+			return "meinProfil.jsf";
+		}
 	}
 
 	public String cancel()
 	{
-		return "frontpage.jsf";
+		return "home.jsf";
 	}
 	
 	public String getVorname() {
@@ -91,41 +89,11 @@ public class MeinProfilView implements java.io.Serializable{
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
-	public Date getGeburtsdatum() {
-		return geburtsdatum;
-	}
-	public void setGeburtsdatum(Date geburtsdatum) {
-		this.geburtsdatum = geburtsdatum;
-	}
-	public String getRolle() {
-		return rolle;
-	}
-	public void setRolle(String rolle) {
-		this.rolle = rolle;
-	}
 	public String getGeschlecht() {
 		return geschlecht;
 	}
 	public void setGeschlecht(String geschlecht) {
 		this.geschlecht = geschlecht;
-	}
-	public String getStrasse() {
-		return strasse;
-	}
-	public void setStrasse(String strasse) {
-		this.strasse = strasse;
-	}
-	public String getOrt() {
-		return ort;
-	}
-	public void setOrt(String ort) {
-		this.ort = ort;
-	}
-	public int getPlz() {
-		return plz;
-	}
-	public void setPlz(int plz) {
-		this.plz = plz;
 	}
 	public String getBenutzername() {
 		return benutzername;

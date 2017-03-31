@@ -1,7 +1,6 @@
 package service;
 
 import java.io.Serializable;
-import java.util.Optional;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;

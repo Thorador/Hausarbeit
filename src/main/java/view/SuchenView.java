@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -25,6 +27,11 @@ public class SuchenView {
 	public String suchen()
 	{
 		suchErgebnisse = suchenService.suchen(getVeranstaltungsname(), getVon(), getBis());
+		if (suchErgebnisse == null)
+		{
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Keine Ergebnisse zur eingegebenen Suche", null);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
 		return "suchen.jsf";
 	}
 	public String cancel()

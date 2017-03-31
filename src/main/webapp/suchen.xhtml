@@ -9,18 +9,19 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<ui:composition template="base.xhtml">
 		<ui:define name="content">
 			<div class="row">
-				<h:form>
+				<h:messages  globalOnly="true" warnStyle="color:orange"></h:messages>
+				<h:form id="suchen-Form">
 				<div class="col-md-3">
-					<span>Veranstaltungsname</span>
+					<span>Veranstaltungsname </span>
 					<h:inputText value="#{suchenView.veranstaltungsname}" ></h:inputText>
 				</div>
 				<div class="col-md-3">
-					<span>Von</span>
+					<span>Von </span>
 					<h:inputText id="von" value="#{suchenView.von}" type="date"><f:convertDateTime pattern="dd.MM.yyyy"/></h:inputText>
 					<h:message for = "von" style = "color:red"  />
 				</div>
 				<div class="col-md-3">
-					<span>Bis</span>
+					<span>Bis </span>
 					<h:inputText id="bis" value="#{suchenView.bis}" type="date"><f:convertDateTime pattern="dd.MM.yyyy"/></h:inputText>
 					<h:message for = "bis" style = "color:red"  />
 				</div>
