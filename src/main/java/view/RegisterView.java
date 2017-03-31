@@ -34,11 +34,11 @@ public class RegisterView implements java.io.Serializable{
 	}
 	
 	public String register()
-	{	
+	{// Registrieren eines neuen Benutzers 
 		if (getPasswort().equals(getPasswortbestaetigen()))
 		{
 			if (!userService.benutzernameVergeben(getBenutzername()))
-			{
+			{// Benutzername noch frei
 				userService.createUser(getBenutzername(), getPasswort(), getVorname(), getNachname(), getGeschlecht(), isManager());
 				return "home.jsf";
 			}

@@ -69,7 +69,7 @@ public class VeranstaltungService {
 	}
 	
 	public void updateVeranstaltung(int id, String veranstaltungsname, String beschreibung, Date datum, String ort, int anzahlTickets, double preis, boolean veroeffentlicht)
-	{
+	{// Aktualisieren einer Veranstaltung in der Datenbank
 		Veranstaltung veranstaltung = this.getVeranstaltungById(id);
 		veranstaltung.setVeranstaltungsname(veranstaltungsname);
 		veranstaltung.setBeschreibung(beschreibung);
@@ -87,13 +87,15 @@ public class VeranstaltungService {
 		this.entityManager.getTransaction().commit();		
 	}
 
-	public List<Veranstaltung> getVeranstaltungen() {
+	public List<Veranstaltung> getVeranstaltungen() 
+	{// Liste aller veröffentlichten Veranstaltungen
 		TypedQuery<Veranstaltung> veranstaltungenQuery = entityManager.createQuery("Select v From Veranstaltung v Where v.veroeffentlicht=1", Veranstaltung.class);
 		List<Veranstaltung> veranstaltungen = veranstaltungenQuery.getResultList();
 		return veranstaltungen;
 	}
 	
-	public List<Veranstaltung> getMeineVeranstaltungen() {
+	public List<Veranstaltung> getMeineVeranstaltungen() 
+	{// Rückgabe einer Liste aller Veranstaltungen bei denen man als Ersteller eingetragen ist 
 		TypedQuery<Veranstaltung> veranstaltungenQuery = entityManager.createQuery("Select v From Veranstaltung v Where v.manager=:user", Veranstaltung.class);
 		veranstaltungenQuery.setParameter("user", sessionService.getActiveUser());
 		List<Veranstaltung> veranstaltungen = veranstaltungenQuery.getResultList();
@@ -125,12 +127,10 @@ public class VeranstaltungService {
 	}
 
 	public void createVeranstaltung(String veranstaltungsname, String beschreibung, Date datum, String ort,
-			int anzahlTickets, double preis, boolean veroeffentlicht) {
-
+			int anzahlTickets, double preis, boolean veroeffentlicht) 
+	{// Erstellen und Hinzufügen einer Veranstaltung in die Datenbank
 		Veranstaltung veranstaltung = new Veranstaltung(veranstaltungsname, beschreibung, datum, ort, anzahlTickets, preis, veroeffentlicht);
 		veranstaltung.setManager(sessionService.getActiveUser());
 		this.addVeranstaltung(veranstaltung);
-		
 	}
-
 }

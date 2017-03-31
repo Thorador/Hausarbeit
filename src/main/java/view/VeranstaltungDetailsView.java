@@ -39,32 +39,33 @@ public class VeranstaltungDetailsView implements Serializable {
 
 	
 	public void init()
-	{
+	{// Initialisierung der Werte fuer die Detailansicht, wird beim Aufruf ausgeloest
 		if (veranstaltungService.getVeranstaltungById(getId()) != null)
 		{
-		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(getId());
-		this.setVeranstaltungsname(veranstaltung.getVeranstaltungsname());
-		this.setBeschreibung(veranstaltung.getBeschreibung());
-		this.setDatum(veranstaltung.getDatum());
-		this.setOrt(veranstaltung.getOrt());
-		this.setFreieTickets(veranstaltung.getMaxTickets()-veranstaltung.getBereitsReservierteTickets());
-		this.setPreis(veranstaltung.getPreis());
+			Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(getId());
+			this.setVeranstaltungsname(veranstaltung.getVeranstaltungsname());
+			this.setBeschreibung(veranstaltung.getBeschreibung());
+			this.setDatum(veranstaltung.getDatum());
+			this.setOrt(veranstaltung.getOrt());
+			this.setFreieTickets(veranstaltung.getMaxTickets()-veranstaltung.getBereitsReservierteTickets());
+			this.setPreis(veranstaltung.getPreis());
 		}
 	}
 
-	public String reservieren() {
-			if (this.getFreieTickets() >= this.getAnzTicketsReservierung())
-			{
-				Reservierung reservierung = reservierungService.reservieren(getId(),getAnzTicketsReservierung());
-				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Die Reservierung wurde mit dem Reservierungscode " + String.valueOf(reservierung.getReservierungscode()) 
-													+ " zu einem Preis von " + getAnzTicketsReservierung() * getPreis() + "Euro gespeichert." , null);
-				FacesContext.getCurrentInstance().addMessage(null, msg);
-			} else 
-			{
-				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Leider sind keine " + String.valueOf(getAnzTicketsReservierung()) + " Ticket(s) mehr für diese Veranstaltung verfügbar." , null);
-				FacesContext.getCurrentInstance().addMessage(null, msg);				
-			}			
 
+	public String reservieren() 
+	{// Reservierung von Tickets zu einer ausgewaehlten Veranstaltung
+		if (this.getFreieTickets() >= this.getAnzTicketsReservierung())
+		{
+			Reservierung reservierung = reservierungService.reservieren(getId(),getAnzTicketsReservierung());
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Die Reservierung wurde mit dem Reservierungscode " + String.valueOf(reservierung.getReservierungscode()) 
+												+ " zu einem Preis von " + getAnzTicketsReservierung() * getPreis() + "Euro gespeichert." , null);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		} else 
+		{
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Leider sind keine " + String.valueOf(getAnzTicketsReservierung()) + " Ticket(s) mehr für diese Veranstaltung verfügbar." , null);
+			FacesContext.getCurrentInstance().addMessage(null, msg);				
+		}			
 		return "veranstaltungDetails.jsf";
 	}
 	

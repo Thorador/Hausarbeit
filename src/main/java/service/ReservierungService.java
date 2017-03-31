@@ -35,7 +35,6 @@ public class ReservierungService{
 
 	@Transactional
 	public void addReservierung(Reservierung reservierung) {
-		
 		entityManager.getTransaction().begin();
 		entityManager.persist(reservierung);
 		entityManager.getTransaction().commit();
@@ -43,12 +42,16 @@ public class ReservierungService{
 	}
 
 	public List<Reservierung> getReservierungen() {
+		//Erstellen einer Liste mit allen Reservierungen eines Managers
 		TypedQuery<Reservierung> reservierungQuery = entityManager.createQuery("Select r From Reservierung r, Veranstaltung v where r.veranstaltung=v And v.manager=:manager", Reservierung.class);
 		reservierungQuery.setParameter("manager", sessionService.getActiveUser());
 		return reservierungQuery.getResultList();
 	}
 
-	public Reservierung reservieren(int veranstaltungsId, int reservierteTickets) {
+	public Reservierung reservieren(int veranstaltungsId, int reservierteTickets) 
+	{// Durchführen einer Reservierung:
+	 // - Veranstaltung aktualisieren (verbleibende Tickets)
+	 // - Reservierung erstellen
 		Reservierung reservierung = new Reservierung();
 		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(veranstaltungsId);
 		veranstaltung.setBereitsReservierteTickets(veranstaltung.getBereitsReservierteTickets() + reservierteTickets);

@@ -35,7 +35,7 @@ public class VeranstaltungAnlegenView implements Serializable {
 	public void init()
 	{
 		this.setAnlegen(true);
-		if (getId() != -1)
+		if (getId() != -1) // -> -1 Entspricht der Neuanlage eines Users und nicht der Bearbeitung
 		{
 			Veranstaltung veranstaltung= veranstaltungService.getVeranstaltungById(getId());
 			this.setVeranstaltungsname(veranstaltung.getVeranstaltungsname());
@@ -50,7 +50,7 @@ public class VeranstaltungAnlegenView implements Serializable {
 	}
 	
 	public String safe()
-	{
+	{// Bestätigen der getätigten Eingaben
 		if (isAnlegen())
 		{
 			veranstaltungService.createVeranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),getPreis(),isVeroeffentlicht());
