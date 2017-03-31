@@ -27,7 +27,7 @@ public class SuchenView {
 	public String suchen()
 	{
 		this.setSuchErgebnisse(suchenService.suchen(getVeranstaltungsname(), getVon(), getBis()));
-		if (suchErgebnisse == null)
+		if (suchErgebnisse == null || suchErgebnisse.isEmpty())
 		{
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Keine Ergebnisse zur eingegebenen Suche", null);
 			FacesContext.getCurrentInstance().addMessage(null, msg);
