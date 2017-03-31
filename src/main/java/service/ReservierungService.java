@@ -8,15 +8,15 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import model.Reservierung;
 import model.Veranstaltung;
-import serviceInterface.IReservierungService;
 
 
 @Named
 @ApplicationScoped
-public class ReservierungService implements IReservierungService {
+public class ReservierungService{
 
 	List<Reservierung> reservierungen = new ArrayList<>();
 	@Inject
@@ -33,7 +33,7 @@ public class ReservierungService implements IReservierungService {
 		
 	}
 
-	@Override
+	@Transactional
 	public void addReservierung(Reservierung reservierung) {
 		
 		entityManager.getTransaction().begin();
@@ -42,7 +42,6 @@ public class ReservierungService implements IReservierungService {
 		
 	}
 
-	@Override
 	public List<Reservierung> getReservierungen() {
 		TypedQuery<Reservierung> reservierungQuery = entityManager.createQuery("Select r From Reservierung r, Veranstaltung v where r.veranstaltung=v And v.manager=:manager", Reservierung.class);
 		reservierungQuery.setParameter("manager", sessionService.getActiveUser());
@@ -55,7 +54,7 @@ public class ReservierungService implements IReservierungService {
 		veranstaltung.setBereitsReservierteTickets(veranstaltung.getBereitsReservierteTickets() + reservierteTickets);
 		reservierung.setVeranstaltung(veranstaltung);
 		reservierung.setGesamtPreis(reservierteTickets * veranstaltung.getPreis());
-		veranstaltungService.updateVeranstaltung();
+		veranstaltungService.updateVeranstaltungAbschicken();
 		reservierung.setAnzTickets(reservierteTickets);
 		reservierung.setGesamtPreis(reservierteTickets * veranstaltung.getPreis());
 		reservierung.setUser(sessionService.getActiveUser());

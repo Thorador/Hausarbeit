@@ -1,7 +1,6 @@
 package service;
 
 
-import java.util.Date;
 
 
 import javax.enterprise.context.ApplicationScoped;
@@ -17,12 +16,14 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import model.User;
-import serviceInterface.IUserService;
 
 
 @ApplicationScoped
-public class UserService implements IUserService {
+public class UserService {
 
+	@Inject
+	private SessionService sessionService;
+	
 	@Inject
 	private EntityManager entityManager;
 
@@ -49,14 +50,13 @@ public class UserService implements IUserService {
 	
 	
 	@Transactional
-	@Override
 	public void addUser(User user) {
 			this.entityManager.getTransaction().begin();
 			this.entityManager.persist(user);
 			this.entityManager.getTransaction().commit();
 	}
 	
-	@Override
+	
 	public boolean benutzernameVergeben(String benutzername)
 	{
 		if (getUserByName(benutzername) != null)
@@ -67,7 +67,7 @@ public class UserService implements IUserService {
 	}
 
 
-	@Override
+	
 	public User getUserByName(String username) {
 		try{
 		TypedQuery<User> userQuery = entityManager.createQuery("Select u From User u where u.benutzername = :benutzername", User.class);
@@ -92,9 +92,29 @@ public class UserService implements IUserService {
 			return null;
 		}	
 	}
-	public void updateUser() {
+	
+	@Transactional
+	public void updateUser(String passwort, String vorname, String nachname, String geschlecht) {
+		User user = this.getUserById(sessionService.getActiveUser().getId());
+		user.setPasswort(String.valueOf(passwort.hashCode()));
+		user.setVorname(vorname);
+		user.setNachname(nachname);
+		user.setGeschlecht(geschlecht);
+		sessionService.setActiveUser(user);
 		this.entityManager.getTransaction().begin();
 		this.entityManager.getTransaction().commit();		
+	}
+	public void createUser(String benutzername, String passwort, String vorname, String nachname, String geschlecht,
+			boolean manager) {
+		User user = new User();
+		user.setBenutzername(benutzername);
+		user.setPasswort(String.valueOf(passwort.hashCode()));
+		user.setVorname(vorname);
+		user.setNachname(nachname);
+		user.setGeschlecht(geschlecht);
+		user.setManager(manager);
+		this.addUser(user);
+		sessionService.setActiveUser(user);		
 	}
 	
 

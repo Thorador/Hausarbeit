@@ -15,15 +15,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import com.sun.faces.config.InitFacesContext;
 
 import model.Veranstaltung;
-import serviceInterface.IVeranstaltungService;
 
 @Named
 @ApplicationScoped
-public class VeranstaltungService implements IVeranstaltungService {
+public class VeranstaltungService {
 
 	List<Veranstaltung> veranstaltungen;
 	
@@ -60,7 +60,7 @@ public class VeranstaltungService implements IVeranstaltungService {
 //	}
 
 	
-	@Override
+	@Transactional
 	public void addVeranstaltung(Veranstaltung veranstaltung) {
 		
 		this.entityManager.getTransaction().begin();
@@ -68,13 +68,25 @@ public class VeranstaltungService implements IVeranstaltungService {
 		this.entityManager.getTransaction().commit();
 	}
 	
-	public void updateVeranstaltung()
+	public void updateVeranstaltung(int id, String veranstaltungsname, String beschreibung, Date datum, String ort, int anzahlTickets, double preis, boolean veroeffentlicht)
 	{
-		this.entityManager.getTransaction().begin();
-		this.entityManager.getTransaction().commit();
+		Veranstaltung veranstaltung = this.getVeranstaltungById(id);
+		veranstaltung.setVeranstaltungsname(veranstaltungsname);
+		veranstaltung.setBeschreibung(beschreibung);
+		veranstaltung.setDatum(datum);
+		veranstaltung.setOrt(ort);
+		veranstaltung.setMaxTickets(anzahlTickets);
+		veranstaltung.setPreis(preis);
+		veranstaltung.setVeroeffentlicht(veroeffentlicht);
+		this.updateVeranstaltungAbschicken();
 	}
 
-	@Override
+	@Transactional
+	public void updateVeranstaltungAbschicken() {
+		this.entityManager.getTransaction().begin();
+		this.entityManager.getTransaction().commit();		
+	}
+
 	public List<Veranstaltung> getVeranstaltungen() {
 		TypedQuery<Veranstaltung> veranstaltungenQuery = entityManager.createQuery("Select v From Veranstaltung v Where v.veroeffentlicht=1", Veranstaltung.class);
 		List<Veranstaltung> veranstaltungen = veranstaltungenQuery.getResultList();
@@ -88,7 +100,6 @@ public class VeranstaltungService implements IVeranstaltungService {
 		return veranstaltungen;
 	}
 
-	@Override
 	public Veranstaltung getVeranstaltungById(int id) {
 		try{
 		TypedQuery<Veranstaltung> veranstaltungQuery = entityManager.createQuery("Select v from Veranstaltung v Where v.id = :id", Veranstaltung.class);
@@ -111,6 +122,15 @@ public class VeranstaltungService implements IVeranstaltungService {
 
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
+	}
+
+	public void createVeranstaltung(String veranstaltungsname, String beschreibung, Date datum, String ort,
+			int anzahlTickets, double preis, boolean veroeffentlicht) {
+
+		Veranstaltung veranstaltung = new Veranstaltung(veranstaltungsname, beschreibung, datum, ort, anzahlTickets, preis, veroeffentlicht);
+		veranstaltung.setManager(sessionService.getActiveUser());
+		this.addVeranstaltung(veranstaltung);
+		
 	}
 
 }

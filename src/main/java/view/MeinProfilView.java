@@ -60,18 +60,12 @@ public class MeinProfilView implements java.io.Serializable{
 	{
 		if (getPasswort().equals(getPasswortbestaetigen()))
 		{
-		User user = userService.getUserById(sessionService.getActiveUser().getId());
-		user.setPasswort(String.valueOf(getPasswort().hashCode()));
-		user.setVorname(getVorname());
-		user.setNachname(getNachname());
-		user.setGeschlecht(getGeschlecht());
-		userService.updateUser();
-		sessionService.setActiveUser(user);
+		userService.updateUser(getPasswort(), getVorname(), getNachname(),getGeschlecht());	
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Die Änderungen wurden in ihr Profil übertragen", null);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		}else
 		{
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben " , null);
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben" , null);
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 		return "meinProfil.jsf";

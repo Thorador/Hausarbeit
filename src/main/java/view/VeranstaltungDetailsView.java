@@ -1,22 +1,17 @@
 package view;
 
 import java.util.Date;
-import java.util.Optional;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.omg.CORBA.portable.ValueBase;
 
 import model.Reservierung;
 import model.Veranstaltung;
 import service.ReservierungService;
-import service.SessionService;
 import service.VeranstaltungService;
 
 @Named
@@ -58,7 +53,7 @@ public class VeranstaltungDetailsView {
 	public String reservieren() {
 		Reservierung reservierung = reservierungService.reservieren(getId(),getAnzTicketsReservierung());
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Die Reservierung wurde mit dem Reservierungscode " + String.valueOf(reservierung.getReservierungscode()) 
-											+ " zu einem Preis von " + getAnzTicketsReservierung() * getPreis() + "€ gespeichert." , null);
+											+ " zu einem Preis von " + getAnzTicketsReservierung() * getPreis() + "Euro gespeichert." , null);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		return "VeranstaltungDetails.jsf";
 	}

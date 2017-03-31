@@ -1,17 +1,12 @@
 package view;
 
-import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.component.UIComponent;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.xml.bind.ValidationException;
 
-import model.User;
 import service.SessionService;
 import service.UserService;
 
@@ -44,25 +39,19 @@ public class RegisterView implements java.io.Serializable{
 		{
 			if (!userService.benutzernameVergeben(getBenutzername()))
 			{
-				User user = new User();
-				user.setBenutzername(getBenutzername());
-				user.setPasswort(String.valueOf(getPasswort().hashCode()));
-				user.setVorname(getVorname());
-				user.setNachname(getNachname());
-				user.setGeschlecht(getGeschlecht());
-				user.setManager(isManager());
-				userService.addUser(user);
-				sessionService.setActiveUser(user);
+				userService.createUser(getBenutzername(), getPasswort(), getVorname(), getNachname(), getGeschlecht(), isManager());
 				return "home.jsf";
 			}
 			else
-			{// Benutzername schon vergeben -> Ausgabe Fehlermeldung
-				setBenutzername("Benutzername schon vergeben.");
+			{// Benutzername schon vergeben
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Der Benutzername ist bereits vegeben. Bitte wählen Sie einen anderen" , null);
+				FacesContext.getCurrentInstance().addMessage(null, msg);
 			}
 		}
 		else
-		{// Passw�rter stimmen nich �berein -> Ausgabe Fehlermeldung
-			
+		{// Passwörter stimmen nich überein
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Die angegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben" , null);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 		return "register.jsf";
 	}

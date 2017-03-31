@@ -53,29 +53,12 @@ public class VeranstaltungAnlegenView implements Serializable {
 	{
 		if (isAnlegen())
 		{
-			Veranstaltung veranstaltung = new Veranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),getPreis(),isVeroeffentlicht());
-			veranstaltung.setManager(sessionService.getActiveUser());
-			veranstaltungService.addVeranstaltung(veranstaltung);
+			veranstaltungService.createVeranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),getPreis(),isVeroeffentlicht());
 			return "home.jsf";		
 		}else{
-			Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(getId());
-			veranstaltung.setVeranstaltungsname(this.getVeranstaltungsname());
-			veranstaltung.setBeschreibung(this.getBeschreibung());
-			veranstaltung.setDatum(this.getDatum());
-			veranstaltung.setOrt(this.getOrt());
-			veranstaltung.setMaxTickets(this.getAnzahlTickets());
-			veranstaltung.setPreis(this.getPreis());
-			veranstaltung.setVeroeffentlicht(this.isVeroeffentlicht());
-			veranstaltungService.updateVeranstaltung();
+			veranstaltungService.updateVeranstaltung(getId(), getVeranstaltungsname(), getBeschreibung(), getDatum(), getOrt(), getAnzahlTickets(), getPreis(),isVeroeffentlicht());
 			return "meineVeranstaltungen.jsf";
 		}
-	}
-	public String create()
-	{
-		Veranstaltung veranstaltung = new Veranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),getPreis(),isVeroeffentlicht());
-		veranstaltung.setManager(sessionService.getActiveUser());
-		veranstaltungService.addVeranstaltung(veranstaltung);
-		return "home.jsf";
 	}
 	
 	public String cancel()
