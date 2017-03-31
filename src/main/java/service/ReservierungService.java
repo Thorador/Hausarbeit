@@ -49,7 +49,7 @@ public class ReservierungService implements IReservierungService {
 		return reservierungQuery.getResultList();
 	}
 
-	public void reservieren(int veranstaltungsId, int reservierteTickets) {
+	public Reservierung reservieren(int veranstaltungsId, int reservierteTickets) {
 		Reservierung reservierung = new Reservierung();
 		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(veranstaltungsId);
 		veranstaltung.setBereitsReservierteTickets(veranstaltung.getBereitsReservierteTickets() + reservierteTickets);
@@ -58,6 +58,7 @@ public class ReservierungService implements IReservierungService {
 		reservierung.setAnzTickets(reservierteTickets);
 		reservierung.setUser(sessionService.getActiveUser());
 		this.addReservierung(reservierung);		
+		return reservierung;
 	}
 
 
