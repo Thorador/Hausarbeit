@@ -16,37 +16,45 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			<div class="input-group">
   				<span class="input-group-addon" style="width:300px">Veranstaltungsname</span>
   				<h:inputText value="#{veranstaltungAnlegenView.veranstaltungsname}" type="text" class="form-control" placeholder="Name der Veranstaltung" required="true"/>
+				<span class="input-group-addon"></span>	
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" style="width:300px">Beschreibung</span>
   				<h:inputText value="#{veranstaltungAnlegenView.beschreibung}" type="text" class="form-control" placeholder="Beschreibung der Veranstaltung" required="true"/>
+				<span class="input-group-addon"></span>	
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon" style="width:300px">Veranstaltungsbeginn (Uhrzeit, Datum)</span>
  			  	<h:inputText id="veranstaltungsdatum" value="#{veranstaltungAnlegenView.datum}" type="date" class="form-control" placeholder="HH:mm dd.MM.yyyy"><f:convertDateTime pattern="HH:mm dd.MM.yyyy" timeZone="GMT+2"></f:convertDateTime></h:inputText>			
+				<span class="input-group-addon"></span>	
 				<h:message for = "veranstaltungsdatum" style = "color:red"  />	
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" style="width:300px">Ort</span>
   				<h:inputText value="#{veranstaltungAnlegenView.ort}" type="text" class="form-control" placeholder="Veranstaltungsort" required="true"/>
+				<span class="input-group-addon"></span>	
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" style="width:300px">Anzahl der Tickets</span>
   				<h:inputText id="anzahlTickets" value="#{veranstaltungAnlegenView.anzahlTickets}" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"><f:validator validatorId="NumericValidator"></f:validator> </h:inputText>
+				<span class="input-group-addon"></span>	
 				<h:message for="anzahlTickets"></h:message>			
 			</div>
 			<div class="input-group">
-  				<span class="input-group-addon" style="width:300px">Preis</span>
-  				<h:inputText value="#{veranstaltungAnlegenView.preis}" class="form-control" placeholder="Preis/Ticket" required="true"/>
+  				<span class="input-group-addon" style="width:300px">Preis*</span>
+  				<h:inputText id="preis" value="#{veranstaltungAnlegenView.preis}" class="form-control" placeholder="Preis/Ticket" required="true"/>
+				<span class="input-group-addon"></span>	
+				<h:message for="preis"></h:message>
 			</div>
 			<div>
-				<span class="input-group-addon" style="width:300px"><h:selectBooleanCheckbox value="#{veranstaltungAnlegenView.veroeffentlicht}">Veranstaltung veröffentlichen? </h:selectBooleanCheckbox></span>
+				<span class="input-group-addon"><h:selectBooleanCheckbox value="#{veranstaltungAnlegenView.veroeffentlicht}">Veranstaltung veröffentlichen? </h:selectBooleanCheckbox></span>
 				
 			</div>
 			<div class="btn-group" style="margin-left:25%; width:50%">
 				<h:commandButton action="#{veranstaltungAnlegenView.safe}" value="Speichern" class="btn btn-default"></h:commandButton>				
 				<h:commandButton action="#{veranstaltungAnlegenView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default"></h:commandButton>
 			</div>
+			<div>*Als Dezimaltrennzeichen ist ein Punkt zu verwenden.</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>
