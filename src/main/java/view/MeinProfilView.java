@@ -5,6 +5,8 @@ package view;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -65,11 +67,14 @@ public class MeinProfilView implements java.io.Serializable{
 		user.setGeschlecht(getGeschlecht());
 		userService.updateUser();
 		sessionService.setActiveUser(user);
-		return "home.jsf";
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Die Änderungen wurden in ihr Profil übertragen", null);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 		}else
-		{// Passw�rter stimmen nich �berein -> Ausgabe Fehlermeldung
-			return "meinProfil.jsf";
+		{
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben " , null);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
+		return "meinProfil.jsf";
 	}
 
 	public String cancel()
