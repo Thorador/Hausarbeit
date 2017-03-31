@@ -51,6 +51,7 @@ public class VeranstaltungDetailsView {
 		this.setDatum(veranstaltung.getDatum());
 		this.setOrt(veranstaltung.getOrt());
 		this.setFreieTickets(veranstaltung.getMaxTickets()-veranstaltung.getBereitsReservierteTickets());
+		this.setPreis(veranstaltung.getPreis());
 		}
 	}
 

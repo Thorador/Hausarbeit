@@ -20,7 +20,9 @@ public class Reservierung {
 	@ManyToOne
 	@JoinColumn(name="userId")
 	private User user;
+	
 	private int anzTickets;
+	private double gesamtPreis;
 	
 	
 	public int getReservierungscode() {
@@ -49,6 +51,12 @@ public class Reservierung {
 	}
 	public void setAnzTickets(int anzTickets) {
 		this.anzTickets = anzTickets;
+	}
+	public double getGesamtPreis() {
+		return gesamtPreis;
+	}
+	public void setGesamtPreis(double gesamtPreis) {
+		this.gesamtPreis = gesamtPreis;
 	}
 	
 }

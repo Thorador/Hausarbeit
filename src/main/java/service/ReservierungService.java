@@ -54,8 +54,10 @@ public class ReservierungService implements IReservierungService {
 		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(veranstaltungsId);
 		veranstaltung.setBereitsReservierteTickets(veranstaltung.getBereitsReservierteTickets() + reservierteTickets);
 		reservierung.setVeranstaltung(veranstaltung);
+		reservierung.setGesamtPreis(reservierteTickets * veranstaltung.getPreis());
 		veranstaltungService.updateVeranstaltung();
 		reservierung.setAnzTickets(reservierteTickets);
+		reservierung.setGesamtPreis(reservierteTickets * veranstaltung.getPreis());
 		reservierung.setUser(sessionService.getActiveUser());
 		this.addReservierung(reservierung);		
 		return reservierung;
