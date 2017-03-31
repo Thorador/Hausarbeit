@@ -99,7 +99,7 @@ public class UserService {
 	public void updateUser(String passwort, String vorname, String nachname, String geschlecht) 
 	{// Aktualisieren eines Users in der Datenbank
 		User user = this.getUserById(sessionService.getActiveUser().getId());
-		user.setPasswort(String.valueOf(passwort.hashCode()));
+		user.setPasswort(passwort);
 		user.setVorname(vorname);
 		user.setNachname(nachname);
 		user.setGeschlecht(geschlecht);

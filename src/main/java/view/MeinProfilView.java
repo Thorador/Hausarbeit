@@ -59,7 +59,15 @@ public class MeinProfilView implements java.io.Serializable{
 	public String save()
 	{// Aktualisieren des Nutzers
 		if (getPasswort().equals(getPasswortbestaetigen()))
-		{
+		{	
+			if (getPasswort().length() == 0)
+			{
+				setPasswort(sessionService.getActiveUser().getPasswort());
+			}
+			else 
+			{
+				setPasswort(String.valueOf(getPasswort().hashCode()));
+			}
 			userService.updateUser(getPasswort(), getVorname(), getNachname(),getGeschlecht());	
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Die Änderungen wurden in ihr Profil übertragen", null);
 			FacesContext.getCurrentInstance().addMessage(null, msg);
