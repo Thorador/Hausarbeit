@@ -24,7 +24,7 @@ public class VeranstaltungAnlegenView implements Serializable {
 	private int anzahlTickets;
 	private boolean veroeffentlicht;
 	private boolean anlegen;
-	private int preis;
+	private double preis;
 	
 	@Inject
 	private SessionService sessionService;
@@ -45,6 +45,7 @@ public class VeranstaltungAnlegenView implements Serializable {
 			this.setAnzahlTickets(veranstaltung.getMaxTickets());
 			this.setVeroeffentlicht(false);
 			this.setAnlegen(false);
+			this.setPreis(veranstaltung.getPreis());
 		}
 	}
 	
@@ -52,7 +53,7 @@ public class VeranstaltungAnlegenView implements Serializable {
 	{
 		if (isAnlegen())
 		{
-			Veranstaltung veranstaltung = new Veranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),isVeroeffentlicht());
+			Veranstaltung veranstaltung = new Veranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),getPreis(),isVeroeffentlicht());
 			veranstaltung.setManager(sessionService.getActiveUser());
 			veranstaltungService.addVeranstaltung(veranstaltung);
 			return "home.jsf";		
@@ -63,6 +64,7 @@ public class VeranstaltungAnlegenView implements Serializable {
 			veranstaltung.setDatum(this.getDatum());
 			veranstaltung.setOrt(this.getOrt());
 			veranstaltung.setMaxTickets(this.getAnzahlTickets());
+			veranstaltung.setPreis(this.getPreis());
 			veranstaltung.setVeroeffentlicht(this.isVeroeffentlicht());
 			veranstaltungService.updateVeranstaltung();
 			return "meineVeranstaltungen.jsf";
@@ -70,7 +72,7 @@ public class VeranstaltungAnlegenView implements Serializable {
 	}
 	public String create()
 	{
-		Veranstaltung veranstaltung = new Veranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),isVeroeffentlicht());
+		Veranstaltung veranstaltung = new Veranstaltung(getVeranstaltungsname(),getBeschreibung(),getDatum(),getOrt(),getAnzahlTickets(),getPreis(),isVeroeffentlicht());
 		veranstaltung.setManager(sessionService.getActiveUser());
 		veranstaltungService.addVeranstaltung(veranstaltung);
 		return "home.jsf";
@@ -130,10 +132,10 @@ public class VeranstaltungAnlegenView implements Serializable {
 	public void setAnlegen(boolean anlegen) {
 		this.anlegen = anlegen;
 	}
-	public int getPreis() {
+	public double getPreis() {
 		return preis;
 	}
-	public void setPreis(int preis) {
+	public void setPreis(double preis) {
 		this.preis = preis;
 	}
 }

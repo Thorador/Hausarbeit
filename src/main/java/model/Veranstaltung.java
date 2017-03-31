@@ -53,12 +53,13 @@ public class Veranstaltung {
 		this.veroeffentlicht = veroeffentlicht;
 	}
 	public Veranstaltung(String veranstaltungsname, String beschreibung, Date datum, String ort, int anzahlTickets,
-			boolean veroeffentlicht) {
+			double preis, boolean veroeffentlicht) {
 		this.veranstaltungsname=veranstaltungsname;
 		this.beschreibung=beschreibung;
 		this.datum=datum;
 		this.ort=ort;
 		this.maxTickets=anzahlTickets;
+		this.preis=preis;
 		this.veroeffentlicht=veroeffentlicht;
 	}
 	public Veranstaltung() {

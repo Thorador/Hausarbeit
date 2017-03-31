@@ -35,6 +35,10 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   				<span>Anzahl der verfügbaren Tickets</span>
   				<h:outputText value="#{veranstaltungDetailsView.freieTickets}" class="form-control"/>
 			</div>
+			<div>
+  				<span>Preis</span>
+  				<h:outputText value="#{veranstaltungDetailsView.preis}" class="form-control"/>
+			</div>
 			<div class="btn-group">
 				<h:form rendered="#{sessionService.isLoggedIn()}"><span>Zu Reservierende Tickets</span></h:form>
   				<h:inputText id="anzTicketsReservierung" value="#{veranstaltungDetailsView.anzTicketsReservierung}" class="form-control" rendered="#{sessionService.isLoggedIn()}">
