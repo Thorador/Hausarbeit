@@ -14,29 +14,29 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			</f:metadata>
 			<h:form>
 			<div class="input-group">
-  				<span class="input-group-addon" >Veranstaltungsname</span>
+  				<span class="input-group-addon" style="width:300px">Veranstaltungsname</span>
   				<h:inputText value="#{veranstaltungAnlegenView.veranstaltungsname}" type="text" class="form-control" placeholder="Name der Veranstaltung" required="true"/>
 			</div>
 			<div class="input-group">
-  				<span class="input-group-addon" >Beschreibung</span>
+  				<span class="input-group-addon" style="width:300px">Beschreibung</span>
   				<h:inputText value="#{veranstaltungAnlegenView.beschreibung}" type="text" class="form-control" placeholder="Beschreibung der Veranstaltung" required="true"/>
 			</div>
 			<div class="input-group">
-				<span class="input-group-addon" >Veranstaltungsbeginn Uhrzeit Datum</span>
+				<span class="input-group-addon" style="width:300px">Veranstaltungsbeginn Uhrzeit Datum</span>
  			  	<h:inputText id="veranstaltungsdatum" value="#{veranstaltungAnlegenView.datum}" type="date" class="form-control" placeholder="HH:mm dd.MM.yyyy"><f:convertDateTime pattern="HH:mm dd.MM.yyyy" timeZone="GMT+2"></f:convertDateTime></h:inputText>			
 
 				<h:message for = "veranstaltungsdatum" style = "color:red"  />	
 			</div>
 			<div class="input-group">
-  				<span class="input-group-addon" >Ort</span>
+  				<span class="input-group-addon" style="width:300px">Ort</span>
   				<h:inputText value="#{veranstaltungAnlegenView.ort}" type="text" class="form-control" placeholder="Veranstaltungsort" required="true"/>
 			</div>
 			<div class="input-group">
-  				<span class="input-group-addon" >Anzahl der Tickets</span>
+  				<span class="input-group-addon" style="width:300px">Anzahl der Tickets</span>
   				<h:inputText value="#{veranstaltungAnlegenView.anzahlTickets}" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"/>
 			</div>
 			<div class="input-group">
-  				<span class="input-group-addon" >Preis</span>
+  				<span class="input-group-addon" style="width:300px">Preis</span>
   				<h:inputText value="#{veranstaltungAnlegenView.preis}" class="form-control" placeholder="Preis/Ticket" required="true"/>
 			</div>
 			<div>

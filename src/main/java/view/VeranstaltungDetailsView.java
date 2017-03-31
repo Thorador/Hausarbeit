@@ -57,7 +57,8 @@ public class VeranstaltungDetailsView {
 
 	public String reservieren() {
 		Reservierung reservierung = reservierungService.reservieren(getId(),getAnzTicketsReservierung());
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Die Reservierung wurde mit dem Reservierungscode " + String.valueOf(reservierung.getReservierungscode()) + " zu einem Preis von " , null);
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Die Reservierung wurde mit dem Reservierungscode " + String.valueOf(reservierung.getReservierungscode()) 
+											+ " zu einem Preis von " + getAnzTicketsReservierung() * getPreis() + "€ gespeichert." , null);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		return "VeranstaltungDetails.jsf";
 	}
