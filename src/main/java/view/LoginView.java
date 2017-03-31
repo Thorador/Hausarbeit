@@ -3,6 +3,8 @@ package view;
 import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,7 +22,15 @@ public class LoginView implements Serializable {
 	
 	public String login()
 	{
-		return sessionService.login(getBenutzername(), getPasswort()) ? "home.jsf" : "login.jsf";			
+		if ( sessionService.login(getBenutzername(), getPasswort()))
+		{
+			return "home.jsf";
+		} else
+		{
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Der angegebene Nutzer ist nicht vorhanden und/oder das Passwort ist falsch. Versuchen Sie es erneut." , null);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+			return "login.jsf";
+		}		
 	}
 	public String cancel()
 	{
