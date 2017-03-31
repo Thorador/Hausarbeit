@@ -13,7 +13,7 @@ public class ReservierungsuebersichtView implements Serializable {
 	
 	public String cancel()
 	{
-		return "frontpage.jsf";
+		return "home.jsf";
 	}
 	
 }

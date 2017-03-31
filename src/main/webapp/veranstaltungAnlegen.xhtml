@@ -33,7 +33,8 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" style="width:300px">Anzahl der Tickets</span>
-  				<h:inputText value="#{veranstaltungAnlegenView.anzahlTickets}" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"/>
+  				<h:inputText id="anzahlTickets" value="#{veranstaltungAnlegenView.anzahlTickets}" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"><f:validator validatorId="NumericValidator"></f:validator> </h:inputText>
+				<h:message for="anzahlTickets"></h:message>			
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon" style="width:300px">Preis</span>

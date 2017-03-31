@@ -7,8 +7,8 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator("NummericValidator")
-public class NummericValidator implements Validator {
+@FacesValidator("NumericValidator")
+public class NumericValidator implements Validator {
 
 	
 	@Override
@@ -17,14 +17,14 @@ public class NummericValidator implements Validator {
 
 		if(!feld.matches("[0-9]+"))
 		{
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ungültige Anzahl", null);
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ungï¿½ltige Anzahl", null);
 			throw new ValidatorException(message);
 		}		
 		else 
-		{	// Wert größer als 0
+		{	// Wert grï¿½ï¿½er als 0
 			if (feld.matches("[0]+"))
 			{
-				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Der Wert muss größer sein als Null.", null);
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Der Wert muss grï¿½ï¿½er sein als Null.", null);
 				throw new ValidatorException(message);
 			}
 		}

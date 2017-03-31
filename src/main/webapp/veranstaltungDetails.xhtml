@@ -13,7 +13,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				<f:viewParam name="id" value="#{veranstaltungDetailsView.id}"></f:viewParam>
 				<f:event listener="#{veranstaltungDetailsView.init}" type="preRenderView"></f:event>
 			</f:metadata>
-			<h:messages  globalOnly="true" infoStyle="color:darkgreen"></h:messages>
+			<h:messages  globalOnly="true" infoStyle="color:darkgreen" errorStyle="color:darkred"></h:messages>
 			<h:form id="details-form">
 			<div>
   				<span>Veranstaltungsname</span>
@@ -41,9 +41,7 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			</div>
 			<div class="btn-group">
 				<h:form rendered="#{sessionService.isLoggedIn()}"><span>Zu Reservierende Tickets</span></h:form>
-  				<h:inputText id="anzTicketsReservierung" value="#{veranstaltungDetailsView.anzTicketsReservierung}" class="form-control" rendered="#{sessionService.isLoggedIn()}">
-  					<f:validator validatorId="NummericValidator"/>
-  				</h:inputText>
+  				<h:inputText id="anzTicketsReservierung" value="#{veranstaltungDetailsView.anzTicketsReservierung}" class="form-control" rendered="#{sessionService.isLoggedIn()}"></h:inputText>
   				<h:message for="anzTicketsReservierung" errorStyle="color:red"></h:message>
 				<h:commandButton action="#{veranstaltungDetailsView.reservieren}" value="Reservieren" class="btn btn-default" rendered="#{sessionService.isLoggedIn()}" />
 				<h:commandButton action="#{veranstaltungDetailsView.cancel}" immediate="true" value="Abbrechen" class="btn btn-default" />
