@@ -37,20 +37,21 @@ public class VeranstaltungDetailsView {
 
 	
 	public void init()
-	{
+	{// Initialisierung der Werte für die Detailansicht, wird über Event ausgelöst
 		if (veranstaltungService.getVeranstaltungById(getId()) != null)
 		{
-		Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(getId());
-		this.setVeranstaltungsname(veranstaltung.getVeranstaltungsname());
-		this.setBeschreibung(veranstaltung.getBeschreibung());
-		this.setDatum(veranstaltung.getDatum());
-		this.setOrt(veranstaltung.getOrt());
-		this.setFreieTickets(veranstaltung.getMaxTickets()-veranstaltung.getBereitsReservierteTickets());
-		this.setPreis(veranstaltung.getPreis());
+			Veranstaltung veranstaltung = veranstaltungService.getVeranstaltungById(getId());
+			this.setVeranstaltungsname(veranstaltung.getVeranstaltungsname());
+			this.setBeschreibung(veranstaltung.getBeschreibung());
+			this.setDatum(veranstaltung.getDatum());
+			this.setOrt(veranstaltung.getOrt());
+			this.setFreieTickets(veranstaltung.getMaxTickets()-veranstaltung.getBereitsReservierteTickets());
+			this.setPreis(veranstaltung.getPreis());
 		}
 	}
 
-	public String reservieren() {
+	public String reservieren() 
+	{// Reservierung von Tickets zu einer ausgewählten Veranstaltung
 		if (this.getAnzTicketsReservierung() > 0)
 		{
 			if (this.getFreieTickets() >= this.getAnzTicketsReservierung())

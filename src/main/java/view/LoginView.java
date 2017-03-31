@@ -23,10 +23,10 @@ public class LoginView implements Serializable {
 	public String login()
 	{
 		if ( sessionService.login(getBenutzername(), getPasswort()))
-		{
+		{// Login Erfolgreich
 			return "home.jsf";
 		} else
-		{
+		{// Login Fehlgeschlagen
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Der angegebene Nutzer ist nicht vorhanden und/oder das Passwort ist falsch. Versuchen Sie es erneut." , null);
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			return "login.jsf";

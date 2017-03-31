@@ -40,18 +40,7 @@ public class Veranstaltung {
 	public void setReservierungen(List<Reservierung> reservierungen) {
 		this.reservierungen = reservierungen;
 	}
-	public User getManager() {
-		return manager;
-	}
-	public void setManager(User manager) {
-		this.manager = manager;
-	}
-	public boolean isVeroeffentlicht() {
-		return veroeffentlicht;
-	}
-	public void setVeroeffentlicht(boolean veroeffentlicht) {
-		this.veroeffentlicht = veroeffentlicht;
-	}
+	
 	public Veranstaltung(String veranstaltungsname, String beschreibung, Date datum, String ort, int anzahlTickets,
 			double preis, boolean veroeffentlicht) {
 		this.veranstaltungsname=veranstaltungsname;
@@ -112,6 +101,18 @@ public class Veranstaltung {
 	}
 	public void setPreis(double preis) {
 		this.preis = preis;
+	}
+	public User getManager() {
+		return manager;
+	}
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
+	public boolean isVeroeffentlicht() {
+		return veroeffentlicht;
+	}
+	public void setVeroeffentlicht(boolean veroeffentlicht) {
+		this.veroeffentlicht = veroeffentlicht;
 	}
 	
 }

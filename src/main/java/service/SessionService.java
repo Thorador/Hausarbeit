@@ -54,7 +54,8 @@ public class SessionService implements Serializable{
 		return false;
 	}
 	
-	public boolean login(String benutzername, String passwort) {
+	public boolean login(String benutzername, String passwort) 
+	{// mit Passwortabfrage (gehashed)
 		passwort = String.valueOf(passwort.hashCode());
 		User user = userService.getUserByName(benutzername);
 		if(user != null)

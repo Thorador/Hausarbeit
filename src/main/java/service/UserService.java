@@ -58,7 +58,7 @@ public class UserService {
 	
 	
 	public boolean benutzernameVergeben(String benutzername)
-	{
+	{// Versuch einen Benutzer mit identischem Namen zu finden (bei Erfolg = True)
 		if (getUserByName(benutzername) != null)
 		{
 			return true;
@@ -68,7 +68,8 @@ public class UserService {
 
 
 	
-	public User getUserByName(String username) {
+	public User getUserByName(String username) 
+	{// Zurückgabe eines Users mit ausgewählten Namen sonst Return Null
 		try{
 		TypedQuery<User> userQuery = entityManager.createQuery("Select u From User u where u.benutzername = :benutzername", User.class);
 		User user = (User) userQuery.setParameter("benutzername", username).getSingleResult();
@@ -80,7 +81,8 @@ public class UserService {
 			return null;
 		}	
 	}
-	public User getUserById(int userId) {
+	public User getUserById(int userId) 
+	{// Zurückgabe eines Users mit ausgewählter ID sonst Return Null
 		try{
 		TypedQuery<User> userQuery = entityManager.createQuery("Select u From User u where u.id = :userId", User.class);
 		User user = (User) userQuery.setParameter("userId", userId).getSingleResult();
@@ -94,7 +96,8 @@ public class UserService {
 	}
 	
 	@Transactional
-	public void updateUser(String passwort, String vorname, String nachname, String geschlecht) {
+	public void updateUser(String passwort, String vorname, String nachname, String geschlecht) 
+	{// Aktualisieren eines Users in der Datenbank
 		User user = this.getUserById(sessionService.getActiveUser().getId());
 		user.setPasswort(String.valueOf(passwort.hashCode()));
 		user.setVorname(vorname);
@@ -105,7 +108,8 @@ public class UserService {
 		this.entityManager.getTransaction().commit();		
 	}
 	public void createUser(String benutzername, String passwort, String vorname, String nachname, String geschlecht,
-			boolean manager) {
+			boolean manager) 
+	{// Erstellen und Hinzufügen eines Users in die Datenbank
 		User user = new User();
 		user.setBenutzername(benutzername);
 		user.setPasswort(String.valueOf(passwort.hashCode()));
