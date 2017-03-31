@@ -17,14 +17,14 @@ public class NumericValidator implements Validator {
 
 		if(!feld.matches("[0-9]+"))
 		{
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ung�ltige Anzahl", null);
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ungueltige Anzahl", null);
 			throw new ValidatorException(message);
 		}		
 		else 
-		{	// Wert gr��er als 0
+		{	// Wert größer als 0
 			if (feld.matches("[0]+"))
 			{
-				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Der Wert muss gr��er sein als Null.", null);
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Der Wert muss groeßer sein als Null.", null);
 				throw new ValidatorException(message);
 			}
 		}

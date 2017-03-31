@@ -1,8 +1,10 @@
 package view;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.enterprise.context.RequestScoped;
+
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -15,8 +17,8 @@ import service.ReservierungService;
 import service.VeranstaltungService;
 
 @Named
-@RequestScoped
-public class VeranstaltungDetailsView {
+@SessionScoped
+public class VeranstaltungDetailsView implements Serializable {
 
 	private int id;
 	private String veranstaltungsname;
@@ -51,8 +53,6 @@ public class VeranstaltungDetailsView {
 	}
 
 	public String reservieren() {
-		if (this.getAnzTicketsReservierung() > 0)
-		{
 			if (this.getFreieTickets() >= this.getAnzTicketsReservierung())
 			{
 				Reservierung reservierung = reservierungService.reservieren(getId(),getAnzTicketsReservierung());
@@ -64,17 +64,8 @@ public class VeranstaltungDetailsView {
 				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Leider sind keine " + String.valueOf(getAnzTicketsReservierung()) + " Ticket(s) mehr für diese Veranstaltung verfügbar." , null);
 				FacesContext.getCurrentInstance().addMessage(null, msg);				
 			}			
-		}else if (this.getAnzTicketsReservierung() == 0)
-		{
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sie müssen mindestens ein Ticket zur Reservierung auswählen." , null);
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-		}else if (this.getAnzTicketsReservierung() < 0)
-		{
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Es sind nur positive Zahlen als Anzahl für zu reservierende Tickets erlaubt." , null);
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-		}
 
-		return "VeranstaltungDetails.jsf";
+		return "veranstaltungDetails.jsf";
 	}
 	
 	public String cancel()
