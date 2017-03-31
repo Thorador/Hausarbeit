@@ -24,6 +24,7 @@ public class VeranstaltungAnlegenView implements Serializable {
 	private int anzahlTickets;
 	private boolean veroeffentlicht;
 	private boolean anlegen;
+	private int preis;
 	
 	@Inject
 	private SessionService sessionService;
@@ -128,5 +129,11 @@ public class VeranstaltungAnlegenView implements Serializable {
 	}
 	public void setAnlegen(boolean anlegen) {
 		this.anlegen = anlegen;
+	}
+	public int getPreis() {
+		return preis;
+	}
+	public void setPreis(int preis) {
+		this.preis = preis;
 	}
 }

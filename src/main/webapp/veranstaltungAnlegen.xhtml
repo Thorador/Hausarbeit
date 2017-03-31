@@ -35,6 +35,10 @@ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   				<span class="input-group-addon" >Anzahl der Tickets</span>
   				<h:inputText value="#{veranstaltungAnlegenView.anzahlTickets}" class="form-control" placeholder="Max. verfügbare Ticktes für die Veranstaltung" required="true"/>
 			</div>
+			<div class="input-group">
+  				<span class="input-group-addon" >Preis</span>
+  				<h:inputText value="#{veranstaltungAnlegenView.Preis}" class="form-control" placeholder="Preis/Ticket" required="true"/>
+			</div>
 			<div>
 				<span class="input-group-addon"><h:selectBooleanCheckbox value="#{veranstaltungAnlegenView.veroeffentlicht}">Veranstaltung veröffentlichen? </h:selectBooleanCheckbox></span>
 				
